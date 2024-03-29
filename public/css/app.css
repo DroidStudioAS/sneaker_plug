@@ -1,0 +1,115 @@
+/**************************************Global Styles Start************************************************/
+/******
+primary_color: #9d9ca1
+secondary: #e1e5e8
+third(buttons/highlights etc): #0195dc
+fourth:#262626 text
+*****/
+html, body {
+    margin: 0;
+    padding: 0;
+}
+/*******header Styles Start*********/
+.header_container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+
+    background-color: #9d9ca1;
+    position: relative;
+    padding: 20px;
+}
+.header_container h1{
+    font-size: xx-large;
+    font-family: "Yu Gothic UI Semibold", serif;
+    color: #262626;
+}
+.nav_button{
+    position: absolute;
+    right: 20px;
+    height: 90px;
+
+}
+.header_logo{
+    position: absolute;
+    left: 20px;
+    font-family: Roboto sans-serif;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+
+}
+.app_navigation{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    opacity: 1;
+    position: fixed;
+    top: 120px;
+    right: -300px;
+    width: 300px;
+    min-height: 100vh;
+    background-color:#9d9ca1 ;
+
+}
+.nav_item{
+    margin: 20px;
+    font-family: Roboto, sans-serif;
+    font-size: xx-large;
+    background-color:#0195dc;
+    padding: 25px;
+    width: 200px;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid #e1e5e8;
+    color: #262626;
+    text-decoration: none;
+}
+.nav_item a:visited{
+    color: #262626;
+    text-decoration: none!important;
+    text-underline: none;
+}
+/*******header Styles end*********/
+
+/*******Footer Styles Start*********/
+.footer_content_container{
+    border-top: 2px solid black ;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #9d9ca1;
+    justify-content: center;
+    align-items: center;
+}
+.footer_content_container p {
+    font-family: "Yu Gothic UI Semibold", serif;
+    color: #262626;
+}
+.tdmark{
+    padding: 15px;
+    border-bottom: 2px solid black;
+}
+/*******Footer Styles end*********/
+
+/******Content Container*******/
+.content_container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #9d9ca1;
+    color: #262626;
+
+}
+
+
+/**************************************Global Styles End************************************************/
