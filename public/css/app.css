@@ -111,5 +111,50 @@ html, body {
 
 }
 
+/*******Product Card*******/
+.product_card{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    height: 60vh;
 
+    margin: 20px;
+}
+.product_content{
+    width: 20vw;
+    height: 60vh;
+    background-color: pink;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+
+}
+.action_buttons{
+    width: 5vw;
+    height: 60vh;
+    background-color: gold;
+
+    opacity: 0; /* Initially hide the action buttons */
+    transition: opacity 0.3s ease; /* Add transition effect for smooth visibility */
+}
+.product_image_container{
+    height: 40vh;
+    width: 20vw;
+    background-color: magenta;
+}
+.product_data_short{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 20vw;
+    background-color: purple;
+    height: 20vh;
+}
+.product_card:hover .action_buttons{
+    opacity: 1;
+}
 /**************************************Global Styles End************************************************/
