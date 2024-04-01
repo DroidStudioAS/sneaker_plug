@@ -30,3 +30,11 @@ Route::get("/about", function (){
 
 /***********User Routes End**********/
 
+/***********Admin Routes**********/
+Route::get("/admin", function (){
+    return view("admin.admin_dash");
+});
+/***********Admin Routes End**********/
+
+
+
