@@ -31,9 +31,7 @@ Route::get("/about", function (){
 /***********User Routes End**********/
 
 /***********Admin Routes**********/
-Route::get("/admin", function (){
-    return view("admin.admin_dash");
-});
+Route::get("/admin",[\App\Http\Controllers\admin\ContactController::class, "index"]);
 /***********Admin Routes End**********/
 
 
