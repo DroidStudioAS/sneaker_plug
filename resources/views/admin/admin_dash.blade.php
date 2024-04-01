@@ -15,6 +15,7 @@
 <div class="edit_msg_popup">
     <img class="close_button" src="{{asset("/res/close.png")}}" alt="close_button" onclick="closeEditPopup()">
     <form action="" class="form">
+        {{csrf_field()}}
         <input id="edit_subject" type="text" class="input_text">
         <input id="edit_email" type="text" class="input_text">
         <textarea id="edit_msg"  class="input_message">
@@ -30,10 +31,33 @@
             $("#edit_subject").val(message.subject);
             $("#edit_email").val(message.email);
             $("#edit_msg").val(message.message);
+
+            $("#edit_submit").off("click").on("click", function (e){
+                e.preventDefault();
+                editMessage(message);
+            })
         }
 
         function closeEditPopup(){
             $(".edit_msg_popup").css("display","none");
+        }
+
+        function editMessage(message){
+           $.ajax({
+               url:"/admin/edit-message/"+message.id,
+               type:"POST",
+               data: {
+                   "_token": $('meta[name="csrf-token"]').attr('content'),
+                   "subject": $("#edit_subject").val(),
+                   "email":$("#edit_email").val(),
+                   "message":$("#edit_msg").val()
+               },
+               success:function (response){
+                   if(response.success===true){
+                       location.reload();
+                   }
+               }
+           })
         }
     </script>
 @endsection
