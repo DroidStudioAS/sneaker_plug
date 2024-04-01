@@ -10,4 +10,8 @@ class ProductModel extends Model
     protected $table = "products_table";
 
     protected $fillable = ["category_id","Name","price","description","available_amount","image_name"];
+
+    public function category(){
+        return $this->hasOne(CategoryModel::class,"id", "category_id");
+    }
 }

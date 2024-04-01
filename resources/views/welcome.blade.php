@@ -14,7 +14,7 @@
                 </div>
                 <div class="product_data_short">
                     <p class="product_desc">{{$product->description}}</p>
-                    <p>{{$product->price}}</p>
+                    <p>{{$product->price}}$</p>
                 </div>
             </div>
             <div class="action_buttons">

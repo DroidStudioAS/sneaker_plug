@@ -114,7 +114,8 @@ html, body {
 /*******Product Card*******/
 .product_container{
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
+    width: 60vw;
     justify-content: center;
     align-items: center;
 }
@@ -123,7 +124,7 @@ html, body {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    width: 25vw;
+    min-width: 25vw;
     height: 60vh;
 
     margin: 20px;
