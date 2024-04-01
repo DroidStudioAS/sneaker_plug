@@ -19,7 +19,6 @@ class ContactController extends Controller{
             "message"=>"required|string"
         ]);
 
-
         $contact->subject = $request->subject;
         $contact->email = $request->email;
         $contact->message = $request->message;
@@ -28,5 +27,12 @@ class ContactController extends Controller{
         return response([
             "success"=>true
         ]);
+    }
+    public function deleteMessage(ContactModel $contact){
+        $contact->delete();
+        return response([
+            "success"=>true
+        ]);
+
     }
 }

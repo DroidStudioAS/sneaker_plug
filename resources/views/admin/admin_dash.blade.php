@@ -7,7 +7,7 @@
        <p class="message_field">"{{$message->message}}"</p>
        <div class="button_container">
            <button onclick="showEditPopup({{json_encode($message)}})" class="edit_button">Edit</button>
-           <button class="delete_button">Delete</button>
+           <button onclick="deleteMessage({{json_encode($message)}})" class="delete_button">Delete</button>
        </div>
    </div>
 @endforeach
@@ -59,6 +59,22 @@
                }
            })
         }
+        function deleteMessage(message){
+            $.ajax({
+                url:"/admin/delete-message/"+message.id,
+                type:"POST",
+                data: {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                },
+                success:function (response){
+                    if(response.success===true){
+                        location.reload();
+                    }
+                }
+            })
+        }
+
+
     </script>
 @endsection
 
