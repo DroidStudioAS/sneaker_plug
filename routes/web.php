@@ -32,6 +32,7 @@ Route::get("/about", function (){
 
 /***********Admin Routes**********/
 Route::get("/admin",[\App\Http\Controllers\admin\ContactController::class, "index"]);
+Route::get("/admin-shop",[\App\Http\Controllers\admin\ShopController::class, "index"]);
 Route::post("admin/edit-message/{contact}",[\App\Http\Controllers\admin\ContactController::class,"editMessage"]);
 Route::post("admin/delete-message/{contact}",[ \App\Http\Controllers\admin\ContactController::class, "deleteMessage"]);
 /***********Admin Routes End**********/

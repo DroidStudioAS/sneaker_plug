@@ -7,10 +7,10 @@
         class="nav_button" src="{{asset("/res/nav/icon_nav.png")}}"/>
     <div class="app_navigation">
         <div class="nav_item">
-            <a href="/contact">Messages</a>
+            <a href="/admin">Messages</a>
         </div>
         <div class="nav_item">
-            <a href="/shop">Edit Shop</a>
+            <a href="/admin-shop">Edit Shop</a>
         </div>
     </div>
     <div>
