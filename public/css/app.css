@@ -236,3 +236,47 @@ html, body {
     width: 25vw;
 }
 /**************************************Contact Styles End************************************************/
+
+/**************************************Admin Styles Start************************************************/
+.message_card{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    width: 40vw;
+    background-color: #1a202c;
+    color:#0195dc;
+
+    margin: 20px;
+}
+.message_field{
+    font-size: large;
+}
+
+.button_container{
+    display: flex;
+    flex-flow: row nowrap;
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.edit_button, .delete_button{
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #0195dc;
+    color:#262626 ;
+    font-size: x-large;
+}
+.delete_button{
+    margin-left: 8px;
+    background-color: indianred;
+}
+.edit_button{
+    margin-right: 8px;
+    background-color: lightgreen;
+}
+/**************************************Admin Styles End************************************************/
+
