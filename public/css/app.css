@@ -195,6 +195,13 @@ html, body {
     color: #0195dc;
     font-size: xx-large;
 }
+.close_button{
+    border-radius: 50%;
+    background-color: #0195dc;
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+}
 /**************************************Global Styles End************************************************/
 /**************************************Contact Styles Start************************************************/
 .contact_container{
@@ -235,6 +242,7 @@ html, body {
 .map_container{
     width: 25vw;
 }
+
 /**************************************Contact Styles End************************************************/
 
 /**************************************Admin Styles Start************************************************/
@@ -277,6 +285,23 @@ html, body {
 .edit_button{
     margin-right: 8px;
     background-color: lightgreen;
+}
+.edit_msg_popup{
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+
+    position: fixed;
+    width: 40vw;
+    height: 50vh;
+
+    top: 25vh;
+    left: 29vw;
+
+    background-color: black;
+    border: 2px solid #0195dc;
 }
 /**************************************Admin Styles End************************************************/
 
