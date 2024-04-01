@@ -5,7 +5,20 @@
     <div class="contact_container">
         <div class="contact_form">
             <h1>Contact Us</h1>
-            <form class="form">
+            @if(isset($message))
+                <p>{{$message}}</p>
+            @elseif($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{route("send")}}" method="POST" class="form">
+                {{csrf_field()}}
                 <input type="text" placeholder="subject" name="subject" class="input_text">
                 <input type="text" placeholder="email" name="email" class="input_text">
                 <textarea type="text" placeholder="message" name="message" class="input_message">
