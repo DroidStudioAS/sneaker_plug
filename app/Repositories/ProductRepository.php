@@ -26,5 +26,9 @@ class ProductRepository{
    public function deleteProduct($product){
        $product->delete();
    }
+   public function getLatestProducts($numOfProducts){
+        $this->productModel =ProductModel::latest()->take($numOfProducts)->get();
+        return $this->productModel;
+   }
 
 }
