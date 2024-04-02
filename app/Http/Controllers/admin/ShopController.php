@@ -39,6 +39,17 @@ class ShopController extends Controller
         ]);
     }
     public function addProduct(Request $request){
-        dd($request->all());
+        $request->validate([
+            "Name"=>"required|string",
+            "available_amount"=>"required|int|gte:0",
+            "category_id"=>"required|int|gte:0",
+            "description"=>"required|string",
+            "price"=>"required|int|gte:0",
+            "image_name"=>"required|string"
+        ]);
+
+        ProductModel::create($request->except("_token"));
+
+        return redirect()->back();
     }
 }

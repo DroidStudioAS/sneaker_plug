@@ -14,7 +14,7 @@
             <input name="Name" id="new_name" type="text" class="input_text">
             <input name="available_amount" id="new_available" type="number" class="input_text">
             <input name="price" id="new_price" type="number" class="input_text">
-            <input name="image" id="new_image" type="text" class="input_text">
+            <input name="image_name" id="new_image" type="text" class="input_text">
             <textarea name="description" id="new_desc"  class="input_message">
             </textarea>
             <input id="new_submit" type="submit" class="input_submit">
