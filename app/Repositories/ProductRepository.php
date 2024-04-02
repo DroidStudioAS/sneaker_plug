@@ -19,5 +19,9 @@ class ProductRepository{
    public function editProduct($product, $request){
        $product->update($request->except("_token"));
    }
+   public function getAllProducts(){
+        $this->productModel=ProductModel::all();
+        return $this->productModel;
+   }
 
 }

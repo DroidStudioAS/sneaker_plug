@@ -17,14 +17,12 @@ class ShopController extends Controller
         $this->productRepo = new ProductRepository();
     }
     public function index(){
-        $products = ProductModel::all();
+        $products = $this->productRepo->getAllProducts();
         $categories = CategoryModel::all();
 
         return view("admin.admin_products", compact("products","categories"));
     }
     public function editProduct(ProductModel $product, ProductRequest $request){
-
-
         $this->productRepo->editProduct($product,$request);
 
         return response([
