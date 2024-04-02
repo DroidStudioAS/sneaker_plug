@@ -40,3 +40,7 @@ Route::post("admin/edit-product/{product}",[\App\Http\Controllers\admin\ShopCont
 Route::post("admin/delete-product/{product}",[\App\Http\Controllers\admin\ShopController::class,"deleteProduct"])->name("delete_product");
 /***********Admin Routes End**********/
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

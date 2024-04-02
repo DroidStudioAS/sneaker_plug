@@ -1,0 +1,388 @@
+/**************************************Global Styles Start************************************************/
+/******
+primary_color: #9d9ca1
+secondary: #e1e5e8
+third(buttons/highlights etc): #0195dc
+fourth:#262626 text
+*****/
+html, body {
+    margin: 0;
+    padding: 0;
+}
+/*******header Styles Start*********/
+.header_container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+
+    background-color: #9d9ca1;
+    position: relative;
+    padding: 20px;
+}
+.header_container h1{
+    font-size: xx-large;
+    font-family: "Yu Gothic UI Semibold", serif;
+    color: #262626;
+}
+.nav_button{
+    position: absolute;
+    right: 20px;
+    height: 90px;
+
+}
+.header_logo{
+    position: absolute;
+    left: 20px;
+    font-family: Roboto sans-serif;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+
+}
+.app_navigation{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    opacity: 1;
+    position: fixed;
+    top: 120px;
+    right: -300px;
+    width: 300px;
+    min-height: 100vh;
+    background-color:#9d9ca1 ;
+
+}
+.nav_item{
+    margin: 20px;
+    font-family: Roboto, sans-serif;
+    font-size: xx-large;
+    background-color:#0195dc;
+    padding: 25px;
+    width: 200px;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid #e1e5e8;
+    color: #262626;
+    text-decoration: none;
+}
+.nav_item a:visited{
+    color: #262626;
+    text-decoration: none!important;
+    text-underline: none;
+}
+/*******header Styles end*********/
+
+/*******Footer Styles Start*********/
+.footer_content_container{
+    border-top: 2px solid black ;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #9d9ca1;
+    justify-content: center;
+    align-items: center;
+}
+.footer_content_container p {
+    font-family: "Yu Gothic UI Semibold", serif;
+    color: #262626;
+}
+.tdmark{
+    padding: 15px;
+    border-bottom: 2px solid black;
+}
+/*******Footer Styles end*********/
+
+/******Content Container*******/
+.content_container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #9d9ca1;
+    color: #262626;
+
+}
+
+/*******Product Card*******/
+.product_container{
+    display: flex;
+    flex-flow: row wrap;
+    width: 60vw;
+    justify-content: center;
+    align-items: center;
+}
+.product_card{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    min-width: 25vw;
+    height: 60vh;
+
+    margin: 20px;
+}
+.product_content{
+    width: 20vw;
+    height: 60vh;
+    background-color: #e1e5e8;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+
+}
+.action_buttons{
+    width: 5vw;
+    height: 60vh;
+    background-color: #0195dc;
+
+    opacity: 0; /* Initially hide the action buttons */
+    transition: opacity 0.3s ease; /* Add transition effect for smooth visibility */
+}
+.product_image_container{
+    height: 40vh;
+    width: 20vw;
+}
+.product_image_container img{
+    height: 40vh;
+    width: 20vw;
+}
+.product_data_short{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 20vw;
+    height: 20vh;
+}
+.product_desc{
+    width: 15vw;
+}
+.product_card:hover .action_buttons{
+    opacity: 1;
+}
+.input_text, .input_message{
+    width: 25vw;
+    padding: 12px 8px 12px 8px;
+    margin: 8px;
+
+    text-align: center;
+    background-color: black;
+    color: #0195dc;
+
+    border-bottom: 3px solid #0195dc;
+    border-radius: 12px;
+}
+.input_message{
+    height: 20vh;
+    text-align: start;
+    resize: none;
+}
+.input_submit{
+    width: 10vw;
+    background-color: black;
+    border-radius: 20px;
+    padding: 12px;
+    border: 2px solid #0195dc;
+    color: #0195dc;
+    font-size: xx-large;
+    text-align: center;
+}
+.close_button{
+    border-radius: 50%;
+    background-color: #0195dc;
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+}
+/**************************************Global Styles End************************************************/
+/**************************************Contact Styles Start************************************************/
+.contact_container{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 80vw;
+    height: 70vh;
+    padding: 20px;
+    color: #0195dc;
+    background-color: black;
+}
+.contact_form{
+    flex: 2;
+    height: 70vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.contact_additional{
+    flex: 1;
+    height: 70vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: #0195dc;
+}
+.map_container{
+    width: 25vw;
+}
+
+/**************************************Contact Styles End************************************************/
+
+/**************************************Admin Styles Start************************************************/
+.message_card{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    width: 40vw;
+    background-color: #1a202c;
+    color:#0195dc;
+
+    margin: 20px;
+}
+.message_field{
+    font-size: large;
+}
+
+.button_container{
+    display: flex;
+    flex-flow: row nowrap;
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.edit_button, .delete_button{
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #0195dc;
+    color:#262626 ;
+    font-size: x-large;
+}
+.delete_button{
+    margin-left: 8px;
+    background-color: indianred;
+}
+.edit_button{
+    margin-right: 8px;
+    background-color: lightgreen;
+}
+.edit_msg_popup, .edit_product_popup{
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+
+    position: fixed;
+    width: 40vw;
+    height: 50vh;
+
+    top: 25vh;
+    left: 29vw;
+
+    background-color: black;
+    border: 2px solid #0195dc;
+}
+.edit_product_popup{
+    height: 80vh;
+}
+
+
+.table_container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+}
+.admin_product_card{
+    width: 40vw;
+    height: 70vh;
+    background-color: #e1e5e8;
+    padding: 15px;
+    margin: 20px;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+.admin_product_row_prim, .admin_product_row_sec{
+    display: flex;
+}
+.admin_product_row_prim{
+    width: 40vw;
+    height: 40vh;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid black;
+}
+.admin_product_row_sec{
+    width: 40vw;
+    height: 30vh;
+
+    margin-top: 10px;
+
+    align-items: center;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+}
+.admin_image_container{
+    width: 20vw;
+    height: 40vh;
+    background-color: olive;
+}
+.admin_image_container img{
+    width: 20vw;
+    height: 40vh;
+}
+.product_description{
+    width: 20vw;
+    height: 40vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    font-size: x-large;
+}
+.product_info_field{
+    width: 39vw;
+    border: 2px solid black;
+    text-align: center;
+    font-size: xx-large;
+}
+.add_container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.add_form{
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+/**************************************Admin Styles End************************************************/
