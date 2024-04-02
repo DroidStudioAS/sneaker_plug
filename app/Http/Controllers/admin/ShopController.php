@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\ProductRequest;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
@@ -22,14 +22,8 @@ class ShopController extends Controller
 
         return view("admin.admin_products", compact("products","categories"));
     }
-    public function editProduct(ProductModel $product, Request $request){
-        $request->validate([
-            "Name"=>"required|string",
-            "available_amount"=>"required|int|gte:0",
-            "category_id"=>"required|int|gte:0",
-            "description"=>"required|string",
-            "price"=>"required|int|gte:0"
-        ]);
+    public function editProduct(ProductModel $product, ProductRequest $request){
+
 
         $this->productRepo->editProduct($product,$request);
 
@@ -45,7 +39,7 @@ class ShopController extends Controller
             "success"=>true
         ]);
     }
-    public function addProduct(AddProductRequest $request){
+    public function addProduct(ProductRequest $request){
 
         $this->productRepo->createNewProduct($request);
 

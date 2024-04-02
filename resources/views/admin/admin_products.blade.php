@@ -67,6 +67,7 @@
             <input id="edit_name" type="text" class="input_text">
             <input id="edit_available" type="number" class="input_text">
             <input id="edit_price" type="number" class="input_text">
+            <input placeholder="Product Image" name="image_name" id="edit_image" type="text" class="input_text">
             <textarea id="edit_desc"  class="input_message">
         </textarea>
             <input id="edit_submit" type="submit" class="input_submit">
@@ -82,6 +83,7 @@
             $("#edit_name").val(product.Name);
             $("#edit_available").val(product.available_amount);
             $("#edit_price").val(product.price);
+            $("#edit_image").val(product.image_name);
             $("#edit_desc").val(product.description);
 
             $("#edit_submit").off("click").on("click",function (e){
@@ -116,6 +118,7 @@
                     "Name":$("#edit_name").val(),
                     "available_amount":$("#edit_available").val(),
                     "price":$("#edit_price").val(),
+                    "image_name":$("#edit_image").val(),
                     "description":$("#edit_desc").val(),
                 },
                 success:function(response){

@@ -310,6 +310,7 @@ html, body {
     border: 2px solid #0195dc;
 }
 .edit_product_popup{
+    top: 15vh;
     height: 80vh;
 }
 
