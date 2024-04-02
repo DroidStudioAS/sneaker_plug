@@ -23,20 +23,20 @@
             </div>
         @endif
         <div class="nav_item">
-            <a href="/">Home</a>
+            <a href="{{route("home")}}">Home</a>
         </div>
         <div class="nav_item">
-            <a href="/contact">Contact</a>
+            <a href="{{route("contact")}}">Contact</a>
         </div>
         <div class="nav_item">
-            <a href="/shop">Shop</a>
+            <a href="{{route("shop")}}">Shop</a>
         </div>
         <div class="nav_item">
-            <a href="/about">About</a>
+            <a href="{{route("about")}}">About</a>
         </div>
         @if(\App\Models\User::isAdmin())
             <div class="nav_item">
-                <a href="/admin">Admin Panel</a>
+                <a href="{{route("admin_panel")}}">Admin Panel</a>
             </div>
         @endif
     </div>

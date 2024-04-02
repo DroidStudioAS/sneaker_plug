@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 /***********User Routes**********/
 //home
-Route::get("/", [HomeController::class, "index"]);
+Route::get("/", [HomeController::class, "index"])->name("home");
 //contact
 Route::get("/contact", [ContactController::class, "index"])->name("contact");
 Route::post("/contact/send", [ContactController::class, "sendMessage"])->name("send");
