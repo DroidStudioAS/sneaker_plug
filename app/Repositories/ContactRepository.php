@@ -13,4 +13,7 @@ class ContactRepository
     public function sendMessage($request){
         $this->contactModel= ContactModel::create($request->except("_token"));
     }
+    public function updateMessage($contact, $request){
+         $contact->update($request->except("_token"));
+    }
 }
