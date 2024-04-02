@@ -5,10 +5,16 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    private $productRepo;
+
+    public function __construct(){
+        $this->productRepo = new ProductRepository();
+    }
     public function index(){
         $products = ProductModel::all();
         $categories = CategoryModel::all();
@@ -48,7 +54,7 @@ class ShopController extends Controller
             "image_name"=>"required|string"
         ]);
 
-        ProductModel::create($request->except("_token"));
+       $this->productRepo->createNewProduct($request);
 
         return redirect()->back()->with("message","$request->Name Created successfully");
     }
