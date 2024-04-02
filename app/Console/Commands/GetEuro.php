@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\ExchangeRates;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -12,16 +13,17 @@ class GetEuro extends Command
      *
      * @var string
      */
-    protected $signature = 'get:rate {base_currency?}';
+    protected $signature = 'get:rate {currency} {base_currency?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This command returns the usd/euro exchange rate. the base_currency param
-    determines what the base currency is (usd/eur are the only valid options). If u send USD, it will return
-    the value of 1 usd in euros, and vice versa. The param defaults to eur if it is not sent';
+    protected $description = 'This command returns the exchange rate of the sent currency, compared to
+    euros. For a list of supported currencies, visit: https://api.vatcomply.com/currencies
+    If you want to change the base currency, send it as the 2nd param to the command
+    You must send the currency code, not the name as the parameter';
 
     /**
      * Create a new command instance.
@@ -40,28 +42,28 @@ class GetEuro extends Command
      */
     public function handle()
     {
+        //base currency is euro, so all values in exchange rate table
+        //are compared to euro
         $baseCurrency = "EUR";
-        if($this->argument("base_currency")!==null) {
-            $baseCurrency = strtoupper($this->argument("base_currency"));
+        $currency = strtoupper($this->argument("currency"));
+        if($this->argument("base_currency")!==null){
+            $baseCurrency=strtoupper($this->argument("base_currency"));
         }
-        if($baseCurrency!=="EUR" && $baseCurrency!=="USD"){
-            //failure
-            return 1;
-        }
-        //if base currency is EURO, set to USD, else set to USD
-        $currencyToParse = $baseCurrency==="EUR" ? "USD":"EUR";
 
         $response = Http::withOptions([
             "verify"=>false
         ])->get(env("CURRENCY_API_URL"),[
             "base"=>$baseCurrency
         ]);
-
         $decodedResponse = json_decode($response,true);
+        $conversionRate = $decodedResponse["rates"][$currency];
 
-        $conversionRate = $decodedResponse["rates"][$currencyToParse];
+        ExchangeRates::create([
+            "currency"=>$this->argument("currency"),
+            "value"=>$conversionRate
+        ]);
 
-        $this->getOutput()->writeln($baseCurrency. " " . $conversionRate);
+        $this->getOutput()->writeln($currency. " " . $conversionRate);
         //success
         return 0;
 
