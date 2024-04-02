@@ -44,6 +44,10 @@ class User extends Authenticatable
     ];
 
     public static function isAdmin(){
+        if (!Auth::check()){
+            return false;
+        }
+
         if(Auth::user()->role==="admin") {
             return true;
         }
