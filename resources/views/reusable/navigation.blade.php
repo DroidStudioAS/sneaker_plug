@@ -44,6 +44,7 @@
         <h1>The Worlds Best Marketplace For Sneakers</h1>
     </div>
 </div>
+
 <script>
         let navContainer = $(".app_navigation");
         let menuClickCount = 0;

@@ -12,6 +12,9 @@
         <div class="nav_item">
             <a href="/admin-shop">Edit Shop</a>
         </div>
+        <div class="nav_item">
+            <a href="/">Home</a>
+        </div>
     </div>
     <div>
         <h1>The Worlds Best Marketplace For Sneakers</h1>

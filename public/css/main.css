@@ -21,6 +21,7 @@ html, body {
     background-color: #9d9ca1;
     position: relative;
     padding: 20px;
+
 }
 .header_container h1{
     font-size: xx-large;
@@ -62,11 +63,15 @@ html, body {
 
 }
 .nav_item{
-    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
     font-family: Roboto, sans-serif;
-    font-size: xx-large;
+    font-size: x-large;
     background-color:#0195dc;
-    padding: 25px;
+    padding: 20px;
     width: 200px;
     text-align: center;
     border-radius: 25px;
