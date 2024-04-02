@@ -6,7 +6,7 @@ use App\Models\ExchangeRates;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
-class GetEuro extends Command
+class GetCurrency extends Command
 {
     /**
      * The name and signature of the console command.
