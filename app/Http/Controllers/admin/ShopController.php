@@ -16,9 +16,18 @@ class ShopController extends Controller
         return view("admin.admin_products", compact("products","categories"));
     }
     public function editProduct(ProductModel $product, Request $request){
+        $request->validate([
+            "Name"=>"required|string",
+            "available_amount"=>"required|int|gte:0",
+            "category_id"=>"required|int|gte:0",
+            "description"=>"required|string",
+            "price"=>"required|int|gte:0"
+        ]);
+
+        $product->update($request->except("_token"));
 
         return response([
-            $product
+            "success"=>true
         ]);
 
     }

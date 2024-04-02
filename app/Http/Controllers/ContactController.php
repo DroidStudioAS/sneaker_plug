@@ -17,9 +17,9 @@ class ContactController extends Controller
             "message"=>"required|string"
         ]);
 
-        $requestDate = $request->except("_token");
+        $requestData = $request->except("_token");
 
-        ContactModel::create($requestDate);
+        ContactModel::create($requestData);
         return view("/contact")->with("message", "Your Message Was Sent Successfully");
     }
 

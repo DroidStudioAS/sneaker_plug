@@ -68,9 +68,16 @@
                 type:"POST",
                 data:{
                     "_token": $('meta[name="csrf-token"]').attr('content'),
+                    "category_id":$("#edit_brand").val(),
+                    "Name":$("#edit_name").val(),
+                    "available_amount":$("#edit_available").val(),
+                    "price":$("#edit_price").val(),
+                    "description":$("#edit_desc").val(),
                 },
                 success:function(response){
-                    console.log(response)
+                   if(response.success===true){
+                       location.reload();
+                   }
                 }
             })
         }
