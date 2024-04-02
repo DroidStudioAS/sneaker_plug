@@ -23,5 +23,8 @@ class ProductRepository{
         $this->productModel=ProductModel::all();
         return $this->productModel;
    }
+   public function deleteProduct($product){
+       $product->delete();
+   }
 
 }

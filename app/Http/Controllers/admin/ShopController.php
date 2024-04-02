@@ -34,8 +34,9 @@ class ShopController extends Controller
         ]);
 
     }
+    //request is sent only for the csrf token;
     public function deleteProduct(ProductModel $product, Request $request){
-        $product->delete();
+        $this->productRepo->deleteProduct($product);
 
         return response([
             "success"=>true
