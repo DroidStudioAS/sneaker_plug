@@ -286,7 +286,7 @@ html, body {
     margin-right: 8px;
     background-color: lightgreen;
 }
-.edit_msg_popup{
+.edit_msg_popup, .edit_product_popup{
     display: none;
     flex-flow: column nowrap;
     justify-content: center;
@@ -302,6 +302,9 @@ html, body {
 
     background-color: black;
     border: 2px solid #0195dc;
+}
+.edit_product_popup{
+    height: 80vh;
 }
 
 
