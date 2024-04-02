@@ -49,9 +49,7 @@ class GetCurrency extends Command
         $currency = strtoupper($this->argument("currency"));
 
         //check if we already have a record before procceding
-        $dbRate = ExchangeRates::where(["currency"=>$currency])
-            ->whereDate("created_at", Carbon::now())
-            ->get();
+        $dbRate = ExchangeRates::getTodaysCurrency($currency);
         if(!$dbRate->isEmpty()){
             $this->getOutput()->writeln("Record for $currency already exists for this date");
             return 1;
@@ -60,12 +58,13 @@ class GetCurrency extends Command
         if($this->argument("base_currency")!==null){
             $baseCurrency=strtoupper($this->argument("base_currency"));
         }
-
+        //API call
         $response = Http::withOptions([
             "verify"=>false
         ])->get(env("CURRENCY_API_URL"),[
             "base"=>$baseCurrency
         ]);
+
         $decodedResponse = json_decode($response,true);
         $conversionRate = $decodedResponse["rates"][$currency];
         //create the rate
