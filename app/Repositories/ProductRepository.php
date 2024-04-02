@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\AddProductRequest;
 use App\Models\ProductModel;
 use http\Env\Request;
 
@@ -12,7 +13,7 @@ class ProductRepository{
     public function __construct(){
         $this->productModel = new ProductModel();
     }
-   public function createNewProduct($request){
+   public function createNewProduct(AddProductRequest $request){
         $this->productModel->create($request->except("_token"));
    }
    public function editProduct($product, $request){

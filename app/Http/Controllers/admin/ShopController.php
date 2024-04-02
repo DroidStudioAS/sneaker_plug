@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddProductRequest;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
@@ -44,17 +45,9 @@ class ShopController extends Controller
             "success"=>true
         ]);
     }
-    public function addProduct(Request $request){
-        $request->validate([
-            "Name"=>"required|string",
-            "available_amount"=>"required|int|gte:0",
-            "category_id"=>"required|int|gte:0",
-            "description"=>"required|string",
-            "price"=>"required|int|gte:0",
-            "image_name"=>"required|string"
-        ]);
+    public function addProduct(AddProductRequest $request){
 
-       $this->productRepo->createNewProduct($request);
+        $this->productRepo->createNewProduct($request);
 
         return redirect()->back()->with("message","$request->Name Created successfully");
     }
