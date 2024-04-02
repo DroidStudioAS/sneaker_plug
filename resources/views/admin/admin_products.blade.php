@@ -27,7 +27,7 @@
 
     <div class="edit_product_popup">
         <img class="close_button" src="{{asset("/res/close.png")}}" alt="close_button" onclick="closeEditPopup()">
-        <form action="" class="form">
+        <form class="form">
             {{csrf_field()}}
             <select id="edit_brand" name="brand" class="input_text">
                 @foreach($categories as $category)
@@ -39,7 +39,7 @@
             <input id="edit_price" type="number" class="input_text">
             <textarea id="edit_desc"  class="input_message">
         </textarea>
-            <input  id="edit_submit" type="submit" class="input_submit">
+            <input id="edit_submit" type="submit" class="input_submit">
         </form>
     </div>
     <script>
@@ -51,9 +51,28 @@
             $("#edit_available").val(product.available_amount);
             $("#edit_price").val(product.price);
             $("#edit_desc").val(product.description);
+
+            $("#edit_submit").off("click").on("click",function (e){
+                e.preventDefault();
+                editProduct(product);
+            })
+
         }
         function closeEditPopup(){
             $(".edit_product_popup").css("display","none");
+        }
+
+        function editProduct(product){
+            $.ajax({
+                url:"admin/edit-product/"+product.id,
+                type:"POST",
+                data:{
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                },
+                success:function(response){
+                    console.log(response)
+                }
+            })
         }
     </script>
 

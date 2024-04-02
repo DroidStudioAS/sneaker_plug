@@ -15,4 +15,11 @@ class ShopController extends Controller
 
         return view("admin.admin_products", compact("products","categories"));
     }
+    public function editProduct(ProductModel $product, Request $request){
+
+        return response([
+            $product
+        ]);
+
+    }
 }
