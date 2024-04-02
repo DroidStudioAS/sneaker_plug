@@ -33,14 +33,15 @@ Route::get("/about", function (){
 
 /***********Admin Routes**********/
 Route::middleware(["auth", AdminMiddleware::class])
+    ->prefix("/admin")
     ->group(function (){
-    Route::get("/admin",[\App\Http\Controllers\admin\ContactController::class, "index"]);
-    Route::get("/admin-shop",[\App\Http\Controllers\admin\ShopController::class, "index"]);
-    Route::post("admin/edit-message/{contact}",[\App\Http\Controllers\admin\ContactController::class,"editMessage"]);
-    Route::post("admin/delete-message/{contact}",[ \App\Http\Controllers\admin\ContactController::class, "deleteMessage"]);
-    Route::post("admin/add-product",[\App\Http\Controllers\admin\ShopController::class,"addProduct"])->name("add_product");
-    Route::post("admin/edit-product/{product}",[\App\Http\Controllers\admin\ShopController::class,"editProduct"])->name("edit_product");
-    Route::post("admin/delete-product/{product}",[\App\Http\Controllers\admin\ShopController::class,"deleteProduct"])->name("delete_product");
+    Route::get("/",[\App\Http\Controllers\admin\ContactController::class, "index"])->name("admin_panel");
+    Route::get("/shop",[\App\Http\Controllers\admin\ShopController::class, "index"])->name("admin_shop");
+    Route::post("/edit-message/{contact}",[\App\Http\Controllers\admin\ContactController::class,"editMessage"]);
+    Route::post("/delete-message/{contact}",[ \App\Http\Controllers\admin\ContactController::class, "deleteMessage"]);
+    Route::post("/add-product",[\App\Http\Controllers\admin\ShopController::class,"addProduct"])->name("add_product");
+    Route::post("/edit-product/{product}",[\App\Http\Controllers\admin\ShopController::class,"editProduct"])->name("edit_product");
+    Route::post("/delete-product/{product}",[\App\Http\Controllers\admin\ShopController::class,"deleteProduct"])->name("delete_product");
 });
 
 /***********Admin Routes End**********/
