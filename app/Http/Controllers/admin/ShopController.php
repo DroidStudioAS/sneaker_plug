@@ -21,8 +21,8 @@ class ShopController extends Controller
     }
 
     public function index(){
-        $products = $this->productRepo->getAllProducts();
-        $categories = $this->categoryRepo->getAllCategories();
+        $products = ProductModel::all();
+        $categories = CategoryModel::all();
 
         return view("admin.admin_products", compact("products","categories"));
     }
