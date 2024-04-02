@@ -110,7 +110,7 @@
 
         function editProduct(product){
             $.ajax({
-                url:"/admin/edit-product/"+product.id,
+                url:"/admin/shop/edit/"+product.id,
                 type:"POST",
                 data:{
                     "_token": $('meta[name="csrf-token"]').attr('content'),
@@ -130,7 +130,7 @@
         }
         function deleteProduct(product){
             $.ajax({
-                url:"/admin/delete-product/"+product.id,
+                url:"/admin/shop/delete/"+product.id,
                 type:"POST",
                 data:{
                     "_token": $('meta[name="csrf-token"]').attr('content'),

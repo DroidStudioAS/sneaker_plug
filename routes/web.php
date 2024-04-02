@@ -17,13 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /***********User Routes**********/
-//contact
-Route::controller(ContactController::class)->group(function(){
-    Route::get("/contact", "index")->name("contact");
-    Route::post("/contact/send", "sendMessage")->name("send");
-});
 //home
 Route::get("/", [HomeController::class, "index"])->name("home");
+//contact
+Route::controller(ContactController::class)
+    ->prefix("/contact")
+    ->group(function(){
+    Route::get("/", "index")->name("contact");
+    Route::post("/send", "sendMessage")->name("send");
+});
 //shop
 Route::get("/shop", [ShopController::class, "index"])->name("shop");
 //about
@@ -38,18 +40,22 @@ Route::middleware(["auth", AdminMiddleware::class])
     ->prefix("/admin")
     ->group(function (){
         //contanct
-        Route::controller(\App\Http\Controllers\admin\ContactController::class)->group(function (){
-            Route::get("/","index")->name("admin_panel");
-            Route::post("/edit-message/{contact}","editMessage");
-            Route::post("/delete-message/{contact}", "deleteMessage");
+        Route::controller(\App\Http\Controllers\admin\ContactController::class)
+            ->prefix("/contact")
+            ->group(function (){
+            Route::get("","index")->name("admin_panel");
+            Route::post("/edit/{contact}","editMessage");
+            Route::post("/delete/{contact}", "deleteMessage");
         });
 
-        //shop
-        Route::controller(\App\Http\Controllers\admin\ShopController::class)->group(function(){
-            Route::get("/shop", "index")->name("admin_shop");
-            Route::post("/add-product","addProduct")->name("add_product");
-            Route::post("/edit-product/{product}","editProduct")->name("edit_product");
-            Route::post("/delete-product/{product}","deleteProduct")->name("delete_product");
+        //shop /admin/shop
+        Route::controller(\App\Http\Controllers\admin\ShopController::class)
+            ->prefix("/shop")
+            ->group(function(){
+            Route::get("", "index")->name("admin_shop");
+            Route::post("/add","addProduct")->name("add_product");
+            Route::post("/edit/{product}","editProduct")->name("edit_product");
+            Route::post("/delete/{product}","deleteProduct")->name("delete_product");
         });
 
 });

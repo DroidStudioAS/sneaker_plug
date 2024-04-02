@@ -44,7 +44,7 @@
 
         function editMessage(message){
            $.ajax({
-               url:"/admin/edit-message/"+message.id,
+               url:"/admin/contact/edit/"+message.id,
                type:"POST",
                data: {
                    "_token": $('meta[name="csrf-token"]').attr('content'),
@@ -61,7 +61,7 @@
         }
         function deleteMessage(message){
             $.ajax({
-                url:"/admin/delete-message/"+message.id,
+                url:"/admin/contact/delete/"+message.id,
                 type:"POST",
                 data: {
                     "_token": $('meta[name="csrf-token"]').attr('content'),
