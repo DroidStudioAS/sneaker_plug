@@ -50,6 +50,6 @@ class ShopController extends Controller
 
         ProductModel::create($request->except("_token"));
 
-        return redirect()->back();
+        return redirect()->back()->with("message","$request->Name Created successfully");
     }
 }

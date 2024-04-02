@@ -4,6 +4,7 @@
         <div onclick="toggleAddProductsForm()" id="add_product" class="input_submit">
             Add Product
         </div>
+        <h1>@if(session("message")) {{session("message")}} @endif</h1>
         <form action="{{route("add_product")}}" method="post" class="add_form">
             {{csrf_field()}}
             <select id="new_brand" name="category_id" class="input_text">
