@@ -38,4 +38,7 @@ class ShopController extends Controller
             "success"=>true
         ]);
     }
+    public function addProduct(Request $request){
+        dd($request->all());
+    }
 }

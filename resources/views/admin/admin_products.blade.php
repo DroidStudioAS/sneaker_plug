@@ -4,18 +4,19 @@
         <div onclick="toggleAddProductsForm()" id="add_product" class="input_submit">
             Add Product
         </div>
-        <form class="add_form">
+        <form action="{{route("add_product")}}" method="post" class="add_form">
             {{csrf_field()}}
-            <select id="new_brand" name="brand" class="input_text">
+            <select id="new_brand" name="category_id" class="input_text">
                 @foreach($categories as $category)
                     <option  value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
-            <input id="new_name" type="text" class="input_text">
-            <input id="new_available" type="number" class="input_text">
-            <input id="new_price" type="number" class="input_text">
-            <textarea id="new_desc"  class="input_message">
-        </textarea>
+            <input name="Name" id="new_name" type="text" class="input_text">
+            <input name="available_amount" id="new_available" type="number" class="input_text">
+            <input name="price" id="new_price" type="number" class="input_text">
+            <input name="image" id="new_image" type="text" class="input_text">
+            <textarea name="description" id="new_desc"  class="input_message">
+            </textarea>
             <input id="new_submit" type="submit" class="input_submit">
         </form>
     </div>

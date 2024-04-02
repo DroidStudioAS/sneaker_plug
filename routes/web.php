@@ -35,6 +35,7 @@ Route::get("/admin",[\App\Http\Controllers\admin\ContactController::class, "inde
 Route::get("/admin-shop",[\App\Http\Controllers\admin\ShopController::class, "index"]);
 Route::post("admin/edit-message/{contact}",[\App\Http\Controllers\admin\ContactController::class,"editMessage"]);
 Route::post("admin/delete-message/{contact}",[ \App\Http\Controllers\admin\ContactController::class, "deleteMessage"]);
+Route::post("admin/add-product",[\App\Http\Controllers\admin\ShopController::class,"addProduct"])->name("add_product");
 Route::post("admin/edit-product/{product}",[\App\Http\Controllers\admin\ShopController::class,"editProduct"])->name("edit_product");
 Route::post("admin/delete-product/{product}",[\App\Http\Controllers\admin\ShopController::class,"deleteProduct"])->name("delete_product");
 /***********Admin Routes End**********/
