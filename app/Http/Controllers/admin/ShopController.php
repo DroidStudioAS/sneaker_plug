@@ -31,4 +31,11 @@ class ShopController extends Controller
         ]);
 
     }
+    public function deleteProduct(ProductModel $product, Request $request){
+        $product->delete();
+
+        return response([
+            "success"=>true
+        ]);
+    }
 }

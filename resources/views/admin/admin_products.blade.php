@@ -18,7 +18,7 @@
                     <div class="product_info_field">Price: {{$product->price}} $</div>
                     <div class="button_container">
                         <div onclick="displayEditForm({{json_encode($product)}})" class="edit_button">Edit</div>
-                        <div class="delete_button">Delete</div>
+                        <div onclick="deleteProduct({{json_encode($product)}})" class="delete_button">Delete</div>
                     </div>
                 </div>
             </div>
@@ -80,6 +80,21 @@
                    }
                 }
             })
+        }
+        function deleteProduct(product){
+            $.ajax({
+                url:"admin/delete-product/"+product.id,
+                type:"POST",
+                data:{
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                },
+                success:function (response){
+                   if(response.success===true){
+                       location.reload();
+                   }
+                }
+            })
+
         }
     </script>
 
