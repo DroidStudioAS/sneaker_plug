@@ -15,5 +15,8 @@ class ProductRepository{
    public function createNewProduct($request){
         $this->productModel->create($request->except("_token"));
    }
+   public function editProduct($product, $request){
+       $product->update($request->except("_token"));
+   }
 
 }

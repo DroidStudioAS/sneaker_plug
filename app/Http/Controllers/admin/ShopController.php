@@ -30,7 +30,7 @@ class ShopController extends Controller
             "price"=>"required|int|gte:0"
         ]);
 
-        $product->update($request->except("_token"));
+        $this->productRepo->editProduct($product,$request);
 
         return response([
             "success"=>true
