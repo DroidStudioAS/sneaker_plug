@@ -12,10 +12,11 @@
                     <option  value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
-            <input name="Name" id="new_name" type="text" class="input_text">
-            <input name="available_amount" id="new_available" type="number" class="input_text">
-            <input name="price" id="new_price" type="number" class="input_text">
-            <input name="image_name" id="new_image" type="text" class="input_text">
+            <input placeholder="Product Name" name="Name" id="new_name" type="text" class="input_text">
+            <input placeholder="Product Amount Available" name="available_amount" id="new_available" type="number" class="input_text">
+            <input placeholder="Product Price" name="price" id="new_price" type="number" class="input_text">
+            <input placeholder="Product Image" name="image_name" id="new_image" type="text" class="input_text">
+            <label for="description">Product Description</label>
             <textarea name="description" id="new_desc"  class="input_message">
             </textarea>
             <input id="new_submit" type="submit" class="input_submit">
