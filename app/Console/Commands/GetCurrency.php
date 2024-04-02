@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\ExchangeRates;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -46,6 +47,16 @@ class GetCurrency extends Command
         //are compared to euro
         $baseCurrency = "EUR";
         $currency = strtoupper($this->argument("currency"));
+
+        //check if we already have a record before procceding
+        $dbRate = ExchangeRates::where(["currency"=>$currency])
+            ->whereDate("created_at", Carbon::now())
+            ->get();
+        if(!$dbRate->isEmpty()){
+            $this->getOutput()->writeln("Record for $currency already exists for this date");
+            return 1;
+        }
+        //if user sent base currency, reset the variable to the sent value
         if($this->argument("base_currency")!==null){
             $baseCurrency=strtoupper($this->argument("base_currency"));
         }
@@ -57,7 +68,7 @@ class GetCurrency extends Command
         ]);
         $decodedResponse = json_decode($response,true);
         $conversionRate = $decodedResponse["rates"][$currency];
-
+        //create the rate
         ExchangeRates::create([
             "currency"=>$this->argument("currency"),
             "value"=>$conversionRate
