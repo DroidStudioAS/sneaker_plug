@@ -26,7 +26,7 @@ class ContactController extends Controller{
         ]);
     }
     public function deleteMessage(ContactModel $contact){
-        $contact->delete();
+       $this->contactRepo->deleteContact($contact);
         return response([
             "success"=>true
         ]);

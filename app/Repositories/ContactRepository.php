@@ -16,4 +16,7 @@ class ContactRepository
     public function updateMessage($contact, $request){
          $contact->update($request->except("_token"));
     }
+    public function deleteContact($contact){
+        $contact->delete();
+    }
 }
