@@ -194,6 +194,7 @@ html, body {
     border: 2px solid #0195dc;
     color: #0195dc;
     font-size: xx-large;
+    text-align: center;
 }
 .close_button{
     border-radius: 50%;
@@ -371,6 +372,18 @@ html, body {
     border: 2px solid black;
     text-align: center;
     font-size: xx-large;
+}
+.add_container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.add_form{
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 /**************************************Admin Styles End************************************************/
 

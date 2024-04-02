@@ -1,5 +1,32 @@
 @extends("layouts.admin_layout")
 @section("admin_content")
+    <div class="add_container">
+        <div onclick="toggleAddProductsForm()" id="add_product" class="input_submit">
+            Add Product
+        </div>
+        <form class="add_form">
+            {{csrf_field()}}
+            <select id="new_brand" name="brand" class="input_text">
+                @foreach($categories as $category)
+                    <option  value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
+            <input id="new_name" type="text" class="input_text">
+            <input id="new_available" type="number" class="input_text">
+            <input id="new_price" type="number" class="input_text">
+            <textarea id="new_desc"  class="input_message">
+        </textarea>
+            <input id="new_submit" type="submit" class="input_submit">
+        </form>
+    </div>
+
+
+
+
+
+
+
+
     <div class="table_container">
         @foreach($products as $product)
             <div class="admin_product_card">
@@ -43,6 +70,8 @@
         </form>
     </div>
     <script>
+        let addProductClickCount = 0;
+
         function displayEditForm(product){
             console.log(product);
             $(".edit_product_popup").css("display","flex");
@@ -61,6 +90,18 @@
         function closeEditPopup(){
             $(".edit_product_popup").css("display","none");
         }
+        function toggleAddProductsForm(){
+            if(addProductClickCount%2===0){
+                $(".add_form").slideDown();
+                $(".add_form").css("display","flex");
+            }else{
+                $(".add_form").slideUp();
+            }
+
+            addProductClickCount++;
+        }
+
+        /*****Async Functions*****/
 
         function editProduct(product){
             $.ajax({
@@ -94,7 +135,6 @@
                    }
                 }
             })
-
         }
     </script>
 
