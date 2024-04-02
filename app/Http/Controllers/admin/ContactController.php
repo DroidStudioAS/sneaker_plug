@@ -14,7 +14,7 @@ class ContactController extends Controller{
         $this->contactRepo = new ContactRepository();
     }
     public function index(){
-        $messages = ContactModel::all();
+        $messages = $this->contactRepo->getAllMessages();
 
         return view("admin.admin_dash", compact("messages"));
     }

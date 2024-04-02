@@ -19,4 +19,8 @@ class ContactRepository
     public function deleteContact($contact){
         $contact->delete();
     }
+    public function getAllMessages(){
+        $this->contactModel=ContactModel::all();
+        return $this->contactModel;
+    }
 }
