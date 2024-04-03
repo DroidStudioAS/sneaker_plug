@@ -46,14 +46,14 @@
             $(".add_to_cart").off("click").on("click",function (e){
                 e.preventDefault();
                 let amount = $("#amount_input").val()
-                if(!amount>0 || !amount<=product.available_amount) {
-                    //handle bad params
-                    return;
+                console.log(amount);
+                if(amount>0 && amount<=product.available_amount && amount!==null) {
+                    addToCart(product, amount);
                 }
-                addToCart(product, amount);
             })
         }
         function addToCart(product, amount){
+            console.log("trigger");
             $.ajax({
                 url:"/cart/add/"+product.id,
                 type:"POST",
