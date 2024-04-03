@@ -19,7 +19,11 @@
         </div>
         </div>
         <div class="payment_container">
-
+            <p>Select A Payment Method</p>
+            <div class="icon_container">
+                <img src="{{asset("/res/icon_paypal.svg")}}" alt="">
+                <img src="{{asset("/res/icon_apple.svg")}}" alt="">
+            </div>
         </div>
     </div>
 @endsection
