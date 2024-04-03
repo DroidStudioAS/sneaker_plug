@@ -42,12 +42,28 @@
         <input type="submit" value="Add To Cart" class="add_to_cart">
     </form>
     <script>
+        let sizeInFocus = -1;
+
         function hideAmountToAddModule(){
             $(".amount_module").css("display","none")
         }
+
+        function handleShoeSizeClick(value){
+            sizeInFocus=value;
+            console.log(sizeInFocus);
+
+            // Loop through the children of a div with id "size_container"
+            $("#size_container").children().each(function(index, element) {
+               if(element.textContent===sizeInFocus){
+                   $(element).css("opacity",1);
+                   return;
+               }
+                   $(element).css("opacity",0.5);
+
+            });
+        }
         function displayAmountToAddModule(product, sizes){
             $("#size_container").empty();
-            console.log(sizes);
             $(".amount_module").css("display","flex")
             $("#available_display").text("Available: " + product.available_amount);
             $("#amount_input").attr("max", product.available_amount)
@@ -56,6 +72,9 @@
                 let newDiv = $("<div>");
                 newDiv.addClass("shoe_size");
                 newDiv.text(item.size);
+                newDiv.click(function (){
+                    handleShoeSizeClick(newDiv.text());
+                });
                 newDiv.appendTo($("#size_container"));
             })
 
