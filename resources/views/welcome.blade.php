@@ -18,11 +18,26 @@
                 </div>
             </div>
             <div class="action_buttons">
-                <img id="add_to_cart_button" src="{{asset("/res/icon_cart.svg")}}" alt="add to cart" class="action_button">
+                <img onclick="addToCart({{json_encode($product)}})"
+                    id="add_to_cart_button" src="{{asset("/res/icon_cart.svg")}}" alt="add to cart" class="action_button">
                 <img onclick="window.location='{{route('product.permalink',['product'=>$product->id])}}'"
                     id="more_info_button" src="{{asset("/res/icon_info.svg")}}" alt="more info" class="action_button">
             </div>
         </div>
     @endforeach
     </div>
+    <script>
+        function addToCart(product){
+            $.ajax({
+                url:"/cart/add/"+product.id,
+                type:"POST",
+                data:{
+                    "_token": $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                }
+            })
+        }
+    </script>
 @endsection

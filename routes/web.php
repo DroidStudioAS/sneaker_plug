@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
@@ -39,11 +40,16 @@ Route::controller(ShopController::class)
         Route::get("/shop","index")->name("shop");
         Route::get("/product/{product}","permalink")->name("product.permalink");
     });
-
 //about
 Route::get("/about", function (){
     return view("about");
 })->name("about");
+//shopping cart
+Route::controller(CartController::class)
+    ->prefix("/cart")
+    ->group(function (){
+        Route::post("/add/{product}", "addToCart");
+    });
 
 /***********User Routes End**********/
 
