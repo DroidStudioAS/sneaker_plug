@@ -60,6 +60,7 @@ html, body {
     width: 300px;
     min-height: 100vh;
     background-color:#9d9ca1 ;
+    z-index: 1;
 
 }
 .nav_item{
@@ -236,6 +237,28 @@ html, body {
     top: 35vh;
     left: 30vw;
 
+}
+.checkout_container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 130px;
+    right: 1vw;
+
+}
+.checkout_button{
+    height: 40px;
+    z-index: 0;
+}
+.checkout_text{
+    opacity: 0;
+    transition: opacity 0.5s ;
+}
+.checkout_container:hover .checkout_text{
+    opacity: 1;
 }
 /**************************************Global Styles End************************************************/
 /**************************************Contact Styles Start************************************************/

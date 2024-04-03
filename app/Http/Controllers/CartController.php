@@ -10,6 +10,7 @@ class CartController extends Controller
 {
     public function index(){
 
+        return view("checkout");
     }
     public function addToCart(ProductModel $product, Request $request){
         $cart = Session::get("products");

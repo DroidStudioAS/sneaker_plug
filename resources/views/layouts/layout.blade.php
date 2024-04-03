@@ -11,6 +11,10 @@
 </head>
 @include("reusable.navigation")
 <div class="content_container">
+    <div onclick="window.location='{{route("cart.view")}}'" class="checkout_container">
+        <img src="{{asset("/res/icon_cart.svg")}}" alt="checkout" class="checkout_button">
+        <p class="checkout_text">Checkout</p>
+    </div>
     @yield("content")
 </div>
 @include("reusable.footer")

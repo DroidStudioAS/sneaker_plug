@@ -48,6 +48,7 @@ Route::get("/about", function (){
 Route::controller(CartController::class)
     ->prefix("/cart")
     ->group(function (){
+        Route::get("", "index")->name("cart.view");
         Route::post("/add/{product}", "addToCart");
     });
 
