@@ -18,9 +18,9 @@ class ShopController extends Controller
         return view("shop", compact("products"));
     }
     public function permalink($product){
+        $singleProduct = $this->productRepo->getSingleProduct($product);
 
-
-        return view("product");
+        return view("product", compact("singleProduct"));
     }
 
 }

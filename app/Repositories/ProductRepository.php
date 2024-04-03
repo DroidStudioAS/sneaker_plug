@@ -30,5 +30,10 @@ class ProductRepository{
         $this->productModel =ProductModel::latest()->take($numOfProducts)->get();
         return $this->productModel;
    }
+   public function getSingleProduct($productId){
+        $this->productModel = ProductModel::where(["id"=>$productId])->first();
+        return $this->productModel;
+   }
+
 
 }
