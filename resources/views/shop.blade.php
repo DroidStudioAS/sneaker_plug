@@ -17,9 +17,13 @@
             </div>
             <div class="action_buttons">
                 <img id="add_to_cart_button" src="{{asset("/res/icon_cart.svg")}}" alt="add to cart" class="action_button">
-                <img id="more_info_button" src="{{asset("/res/icon_info.svg")}}" alt="more info" class="action_button">
+                <img id="more_info_button" src="{{asset("/res/icon_info.svg")}}" alt="more info" class="action_button"
+                onclick="window.location='{{route('product',['product'=>$product->id])}}'">
             </div>
         </div>
     @endforeach
     </div>
+    <script>
+
+    </script>
 @endsection

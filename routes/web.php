@@ -37,7 +37,7 @@ Route::controller(ContactController::class)
 Route::controller(ShopController::class)
     ->group(function (){
         Route::get("/shop","index")->name("shop");
-        Route::get("/product","permalink");
+        Route::get("/product/{product}","permalink")->name("product");
     });
 
 //about
