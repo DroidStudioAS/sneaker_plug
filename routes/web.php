@@ -35,6 +35,7 @@ Route::controller(ContactController::class)
 });
 //shop
 Route::get("/shop", [ShopController::class, "index"])->name("shop");
+Route::get("/product",[ShopController::class, "permalink"]);
 //about
 Route::get("/about", function (){
     return view("about");

@@ -17,5 +17,9 @@ class ShopController extends Controller
         $products = ProductModel::all();
         return view("shop", compact("products"));
     }
+    public function permalink(){
+
+        return view("product");
+    }
 
 }
