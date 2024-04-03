@@ -12,7 +12,7 @@ class CartController extends Controller
     }
     public function addToCart(ProductModel $product, Request $request){
         return response([
-            "success"=>$product
+            "success"=>$request->all()
         ]);
     }
 }

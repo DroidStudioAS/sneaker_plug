@@ -217,6 +217,26 @@ html, body {
     top: 1vh;
     right: 1vw;
 }
+/***Cart Styles**/
+.amount_module{
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    height: 40vh;
+    width: 40vw;
+
+    background-color: #1a202c;
+    color: #edf2f7;
+    border-radius: 8px;
+    border:2px solid #0195dc;
+
+    position: fixed;
+    top: 35vh;
+    left: 30vw;
+
+}
 /**************************************Global Styles End************************************************/
 /**************************************Contact Styles Start************************************************/
 .contact_container{
