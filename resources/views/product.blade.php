@@ -17,10 +17,10 @@
                     <img src="{{asset("/res/icon_rating.svg")}}" alt="" class="rating_star">
 
                 </div>
-                <p>Only {{$singleProduct->available_amount}} Left. Available Sizes:</p>
+                <p>Only {{$totalAvailable}} Left. Available Sizes:</p>
                 <div class="size_container">
                    @foreach($singleProduct->availableSizes as $size)
-                       <div class="shoe_size">
+                       <div onclick="" class="shoe_size">
                            {{$size->size}}
                        </div>
                    @endforeach
@@ -35,9 +35,11 @@
             <div class="add_to_cart">
                 Add To Cart
             </div>
-
-
-
         </div>
     </div>
+    <script>
+        function handleSizeButtonClick(){
+
+        }
+    </script>
 @endsection

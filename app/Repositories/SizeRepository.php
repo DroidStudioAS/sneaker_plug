@@ -12,7 +12,12 @@ class SizeRepository
         $this->sizeModel = new AvailableSizes();
     }
     public function getSizesForProduct($id){
+        $sum=0;
         $this->sizeModel = AvailableSizes::where(["product_id"=>$id])->get();
-        return $this->sizeModel;
+        foreach ($this->sizeModel as $size){
+            $sum += $size->available;
+        }
+        return $sum;
     }
+
 }

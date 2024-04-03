@@ -20,7 +20,7 @@ class CartController extends Controller
         foreach (Session::get("products") as $id=>$amountAndSize){
             $product = $this->productRepo->getSingleProduct($id);
             ProductHelper::addAmountAndSizeToProduct($product, $amountAndSize);
-            $products->push($product);
+            $products->push($product);  
 
             $sum+= $product->amount * $product->price;
         }
