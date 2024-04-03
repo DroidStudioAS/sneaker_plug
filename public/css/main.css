@@ -150,6 +150,10 @@ html, body {
 
     opacity: 0; /* Initially hide the action buttons */
     transition: opacity 0.3s ease; /* Add transition effect for smooth visibility */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
 }
 .product_image_container{
     height: 40vh;
@@ -174,6 +178,11 @@ html, body {
 .product_card:hover .action_buttons{
     opacity: 1;
 }
+.action_button{
+    width: 4vw;
+}
+/*Product Card End*/
+
 .input_text, .input_message{
     width: 25vw;
     padding: 12px 8px 12px 8px;
