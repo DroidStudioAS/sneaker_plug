@@ -17,10 +17,10 @@
                     <img src="{{asset("/res/icon_rating.svg")}}" alt="" class="rating_star">
 
                 </div>
-                <p>Only {{$totalAvailable}} Left. Available Sizes:</p>
+                <p id="available_display">Only {{$totalAvailable}} Left. Available Sizes:</p>
                 <div class="size_container">
                    @foreach($singleProduct->availableSizes as $size)
-                       <div onclick="" class="shoe_size">
+                       <div onclick="handleSizeButtonClick({{json_encode($size)}})" class="shoe_size">
                            {{$size->size}}
                        </div>
                    @endforeach
@@ -38,8 +38,8 @@
         </div>
     </div>
     <script>
-        function handleSizeButtonClick(){
-
+        function handleSizeButtonClick(availableSize){
+            $("#available_display").text("Only " + availableSize.available + " Left in size "  +availableSize.size);
         }
     </script>
 @endsection
