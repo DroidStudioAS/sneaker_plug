@@ -16,15 +16,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/***********User Routes**********/
+/***********
+ *******User Routes*********
+ * All unnamed routes in both
+ * user and admin routes
+ * are called from JS without
+ * the name attribute
+ */
 //home
 Route::get("/", [HomeController::class, "index"])->name("home");
 //contact
 Route::controller(ContactController::class)
     ->prefix("/contact")
+    ->name("contact")
     ->group(function(){
-    Route::get("/", "index")->name("contact");
-    Route::post("/send", "sendMessage")->name("contact.send");
+    Route::get("/", "index");
+    Route::post("/send", "sendMessage")->name(".send");
 });
 //shop
 Route::get("/shop", [ShopController::class, "index"])->name("shop");
@@ -51,11 +58,12 @@ Route::middleware(["auth", AdminMiddleware::class])
         //shop /admin/shop
         Route::controller(\App\Http\Controllers\admin\ShopController::class)
             ->prefix("/shop")
+            ->name("product.")
             ->group(function(){
-            Route::get("", "index")->name("admin.shop");
-            Route::post("/add","addProduct")->name("product.add");
-            Route::post("/edit/{product}","editProduct")->name("product.edit");
-            Route::post("/delete/{product}","deleteProduct")->name("product.delete");
+            Route::get("", "index")->name("admin");
+            Route::post("/add","addProduct")->name("add");
+            Route::post("/edit/{product}","editProduct")->name("edit");
+            Route::post("/delete/{product}","deleteProduct")->name("delete");
         });
 
 });

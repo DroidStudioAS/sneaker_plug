@@ -10,7 +10,7 @@
             <a href="{{route("admin.panel")}}">Messages</a>
         </div>
         <div class="nav_item">
-            <a href="{{route("admin.shop")}}">Edit Shop</a>
+            <a href="{{route("product.admin")}}">Edit Shop</a>
         </div>
         <div class="nav_item">
             <a href="/">Home</a>
