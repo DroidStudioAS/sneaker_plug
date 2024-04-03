@@ -34,8 +34,12 @@ Route::controller(ContactController::class)
     Route::post("/send", "sendMessage")->name(".send");
 });
 //shop
-Route::get("/shop", [ShopController::class, "index"])->name("shop");
-Route::get("/product",[ShopController::class, "permalink"]);
+Route::controller(ShopController::class)
+    ->group(function (){
+        Route::get("/shop","index")->name("shop");
+        Route::get("/product","permalink");
+    });
+
 //about
 Route::get("/about", function (){
     return view("about");
