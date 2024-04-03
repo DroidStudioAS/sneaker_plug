@@ -13,8 +13,14 @@ class CreateAvailableNumbersModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('available_numbers_models', function (Blueprint $table) {
+        Schema::create('available_sizes', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger("product_id");
+            $table->foreign("product_id")->references("id")->on("products_table")->onDelete("cascade");
+
+            $table->float("size");
+
             $table->timestamps();
         });
     }
