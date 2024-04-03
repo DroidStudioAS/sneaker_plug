@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Helpers\ProductHelper;
+use App\Models\AvailableSizes;
 use App\Models\ProductModel;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,8 @@ class ProductSeeder extends Seeder
     {
         $this->command->getOutput()->progressStart(20);
         foreach (ProductHelper::MODELS as $model){
-            ProductModel::create([
+            $tempSize = 0;
+            $product = ProductModel::create([
                 "category_id"=>$model["category_id"],
                 "Name"=>$model["name"],
                 "price"=>$model["price"],
@@ -26,7 +28,12 @@ class ProductSeeder extends Seeder
                 "available_amount"=>rand(0,100),
                 "image_name"=>"mock.jpg"
             ]);
-
+            for($i=0; $i<3; $i++){
+                AvailableSizes::create([
+                    "product_id"=>$product->id,
+                    "size"=>rand(40,49)
+                ]);
+            }
             $this->command->getOutput()->progressAdvance(1);
         }
         $this->command->getOutput()->progressFinish();
