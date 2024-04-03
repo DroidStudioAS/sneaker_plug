@@ -7,10 +7,10 @@
         class="nav_button" src="{{asset("/res/nav/icon_nav.png")}}"/>
     <div class="app_navigation">
         <div class="nav_item">
-            <a href="{{route("admin_panel")}}">Messages</a>
+            <a href="{{route("admin.panel")}}">Messages</a>
         </div>
         <div class="nav_item">
-            <a href="{{route("admin_shop")}}">Edit Shop</a>
+            <a href="{{route("admin.shop")}}">Edit Shop</a>
         </div>
         <div class="nav_item">
             <a href="/">Home</a>

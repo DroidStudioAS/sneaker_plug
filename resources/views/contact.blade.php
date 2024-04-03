@@ -17,7 +17,7 @@
                 </div>
             @endif
 
-            <form action="{{route("send")}}" method="POST" class="form">
+            <form action="{{route("contact.send")}}" method="POST" class="form">
                 {{csrf_field()}}
                 <input type="text" placeholder="subject" name="subject" class="input_text">
                 <input type="text" placeholder="email" name="email" class="input_text">

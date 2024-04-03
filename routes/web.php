@@ -24,7 +24,7 @@ Route::controller(ContactController::class)
     ->prefix("/contact")
     ->group(function(){
     Route::get("/", "index")->name("contact");
-    Route::post("/send", "sendMessage")->name("send");
+    Route::post("/send", "sendMessage")->name("contact.send");
 });
 //shop
 Route::get("/shop", [ShopController::class, "index"])->name("shop");
@@ -43,7 +43,7 @@ Route::middleware(["auth", AdminMiddleware::class])
         Route::controller(\App\Http\Controllers\admin\ContactController::class)
             ->prefix("/contact")
             ->group(function (){
-            Route::get("","index")->name("admin_panel");
+            Route::get("","index")->name("admin.panel");
             Route::post("/edit/{contact}","editMessage");
             Route::post("/delete/{contact}", "deleteMessage");
         });
@@ -52,10 +52,10 @@ Route::middleware(["auth", AdminMiddleware::class])
         Route::controller(\App\Http\Controllers\admin\ShopController::class)
             ->prefix("/shop")
             ->group(function(){
-            Route::get("", "index")->name("admin_shop");
-            Route::post("/add","addProduct")->name("add_product");
-            Route::post("/edit/{product}","editProduct")->name("edit_product");
-            Route::post("/delete/{product}","deleteProduct")->name("delete_product");
+            Route::get("", "index")->name("admin.shop");
+            Route::post("/add","addProduct")->name("product.add");
+            Route::post("/edit/{product}","editProduct")->name("product.edit");
+            Route::post("/delete/{product}","deleteProduct")->name("product.delete");
         });
 
 });

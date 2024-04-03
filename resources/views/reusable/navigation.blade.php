@@ -36,7 +36,7 @@
         </div>
         @if(\App\Models\User::isAdmin())
             <div class="nav_item">
-                <a href="{{route("admin_panel")}}">Admin Panel</a>
+                <a href="{{route("admin.panel")}}">Admin Panel</a>
             </div>
         @endif
     </div>
