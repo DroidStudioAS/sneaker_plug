@@ -20,6 +20,7 @@ class ShopController extends Controller
     public function permalink($product){
         $singleProduct = $this->productRepo->getSingleProduct($product);
 
+
         return view("product", compact("singleProduct"));
     }
 

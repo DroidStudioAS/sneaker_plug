@@ -14,4 +14,7 @@ class ProductModel extends Model
     public function category(){
         return $this->hasOne(CategoryModel::class,"id", "category_id");
     }
+    public function availableSizes(){
+        return $this->hasMany(AvailableSizes::class, "product_id", "id");
+    }
 }

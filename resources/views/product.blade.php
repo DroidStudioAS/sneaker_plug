@@ -19,13 +19,11 @@
                 </div>
                 <p>Only {{$singleProduct->available_amount}} Left. Available Sizes:</p>
                 <div class="size_container">
-                    <div class="shoe_size">40</div>
-                    <div class="shoe_size">41</div>
-                    <div class="shoe_size">42</div>
-                    <div class="shoe_size">43</div>
-                    <div class="shoe_size">44</div>
-                    <div class="shoe_size">45</div>
-                    <div class="shoe_size">46</div>
+                   @foreach($singleProduct->availableSizes as $size)
+                       <div class="shoe_size">
+                           {{$size->size}}
+                       </div>
+                   @endforeach
                 </div>
             </div>
         </div>
