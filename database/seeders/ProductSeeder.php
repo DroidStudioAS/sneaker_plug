@@ -25,13 +25,13 @@ class ProductSeeder extends Seeder
                 "Name"=>$model["name"],
                 "price"=>$model["price"],
                 "description"=>$model["description"],
-                "available_amount"=>rand(0,100),
                 "image_name"=>"mock.jpg"
             ]);
             for($i=0; $i<3; $i++){
                 AvailableSizes::create([
                     "product_id"=>$product->id,
-                    "size"=>rand(40,49)
+                    "size"=>rand(40,49),
+                    "available"=>rand(0,100)
                 ]);
             }
             $this->command->getOutput()->progressAdvance(1);
