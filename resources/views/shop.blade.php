@@ -11,7 +11,10 @@
                     <img src="{{asset("/res/mock.jpg")}}" alt="product_image">
                 </div>
                 <div class="product_data_short">
-                    <p class="product_desc">{{$product->description}}</p>
+                    <div class="product_name_desc_container">
+                        <p class="product_name">{{$product->category->name}} {{$product->Name}}</p>
+                        <p class="product_desc">{{$product->description}}</p>
+                    </div>
                     <p>{{$product->price}}$</p>
                 </div>
             </div>
