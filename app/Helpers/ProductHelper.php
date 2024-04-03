@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\ProductModel;
+use Illuminate\Support\Facades\Session;
 
 class ProductHelper
 {
@@ -31,7 +32,10 @@ class ProductHelper
     );
 
 
-    public static function addAmountToProduct(ProductModel $product, $amount){
-        $product->amount = $amount;
+    public static function addAmountAndSizeToProduct(ProductModel $product, $amount){
+
+        $splitAmountArray = explode(" ", $amount);
+        $product->amount = $splitAmountArray[0];
+        $product->size = $splitAmountArray[1];
     }
 }

@@ -64,7 +64,7 @@
         }
         function displayAmountToAddModule(product, sizes){
             console.log(sizes);
-            let totalAvailable=0;
+            sizeInFocus=0;
             $("#size_container").empty();
             $(".amount_module").css("display","flex")
             $("#amount_input").attr("max", product.available_amount)
@@ -77,17 +77,17 @@
                     $("#available_display").text("Available: " + item.available);
                     handleShoeSizeClick(newDiv.text());
                 });
-                totalAvailable+= item.available;
+                sizeInFocus+= item.available;
                 newDiv.appendTo($("#size_container"));
             })
 
-            $("#available_display").text("Available: " + totalAvailable);
+            $("#available_display").text("Available: " + sizeInFocus);
 
             $(".add_to_cart").off("click").on("click",function (e){
                 e.preventDefault();
                 let amount = $("#amount_input").val()
                 console.log(amount);
-                if(amount>0 && amount<=product.available_amount && amount!==null) {
+                if(amount>0 && amount<=sizeInFocus && amount!==null) {
                     addToCart(product, amount);
                 }
             })
@@ -99,7 +99,8 @@
                 type:"POST",
                 data:{
                     "_token": $('meta[name="csrf-token"]').attr('content'),
-                    "amount": amount
+                    "amount": amount,
+                    "size":sizeInFocus
                 },
                 success:function(response){
                     console.log(response);
