@@ -14,7 +14,7 @@ class ShopController extends Controller
         $this->productRepo = new ProductRepository();
     }
     public function index(){
-        $products = ProductModel::all()->with("availableSizes");
+        $products = ProductModel::all();
         return view("shop", compact("products"));
     }
     public function permalink($product){
