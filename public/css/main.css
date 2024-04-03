@@ -233,7 +233,7 @@ html, body {
     justify-content: center;
     align-items: center;
 
-    height: 40vh;
+    height: 60vh;
     width: 40vw;
 
     background-color: #1a202c;
@@ -590,6 +590,7 @@ html, body {
     color: white;
     border-radius: 8px;
     margin: 20px;
+    border: 2px solid #edf2f7;
 }
 
 .third_product_row{

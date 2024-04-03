@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="action_buttons">
-                <img onclick="displayAmountToAddModule({{json_encode($product)}})"
+                <img onclick="displayAmountToAddModule({{json_encode($product)}}, {{json_encode($product->availableSizes)}})"
                     id="add_to_cart_button" src="{{asset("/res/icon_cart.svg")}}" alt="add to cart" class="action_button">
                 <img onclick="window.location='{{route('product.permalink',['product'=>$product->id])}}'"
                     id="more_info_button" src="{{asset("/res/icon_info.svg")}}" alt="more info" class="action_button">
@@ -33,6 +33,9 @@
 
     <form class="amount_module">
         <img onclick="hideAmountToAddModule()" class="close_button" src="{{asset("/res/close.png")}}"/>
+        <p>Available Sizes:</p>
+        <div id="size_container" class="size_container">
+        </div>
         <p>Select Amount To Order</p>
         <p id="available_display"></p>
         <input class="input_text" type="number" name="amount" id="amount_input" min="1">
@@ -42,10 +45,21 @@
         function hideAmountToAddModule(){
             $(".amount_module").css("display","none")
         }
-        function displayAmountToAddModule(product){
+        function displayAmountToAddModule(product, sizes){
+            $("#size_container").empty();
+            console.log(sizes);
             $(".amount_module").css("display","flex")
             $("#available_display").text("Available: " + product.available_amount);
             $("#amount_input").attr("max", product.available_amount)
+            //populate the size_container with the possible sizes
+            sizes.forEach(function (item, index){
+                let newDiv = $("<div>");
+                newDiv.addClass("shoe_size");
+                newDiv.text(item.size);
+                newDiv.appendTo($("#size_container"));
+            })
+
+
 
             $(".add_to_cart").off("click").on("click",function (e){
                 e.preventDefault();
