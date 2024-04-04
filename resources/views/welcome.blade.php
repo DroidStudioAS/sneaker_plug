@@ -155,7 +155,6 @@
         }
 
         function resetAmountModule(){
-            sizeInFocus=-1;
             $(".amount_form").css("display","flex")
             $(".success_message").css("display","none")
         }
