@@ -17,6 +17,9 @@ class CartController extends Controller
     public function index(){
         $products= collect([]);
         $totalPriceOfCart=0;
+        if (Session::get("products")===null){
+            return view("checkout", compact("products","totalPriceOfCart"));
+        }
         foreach (Session::get("products") as $id=>$amountAndSize){
             $product = $this->productRepo->getSingleProduct($id);
            // dd($amountAndSize);

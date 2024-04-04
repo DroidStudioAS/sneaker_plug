@@ -117,6 +117,7 @@
                     "size":sizeInFocus
                 },
                 success:function(response){
+                    console.log(response);
                     if(response.success===true){
                         displaySuccessfullyAddedMessage(product, amount);
                     }
