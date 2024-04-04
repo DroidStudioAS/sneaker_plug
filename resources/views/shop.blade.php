@@ -44,58 +44,72 @@
                 <span id="model_slot"></span>, in size:
                 <span id="size_slot"></span>
                 To Your Cart</p>
-            <button onclick="resetAmountModule()" id="reset_button" class="add_to_cart">Order Another</button>
+            <div class="button_container">
+                <button onclick="resetAmountModule()" id="reset_button" class="add_to_cart">Order Another</button>
+                <button onclick="window.location='{{route("cart.view")}}'" id="cart_redirect" class="add_to_cart">Go To Checkout</button>
+            </div>
         </div>
     </div>
     <script>
         let sizeInFocus = -1;
+        let availableAmount = -1;
+        let totalAvailable = 0;
 
         function hideAmountToAddModule(){
             $(".amount_module").css("display","none")
         }
 
         function handleShoeSizeClick(value){
+            //set size in focus to clicked value
             sizeInFocus=value;
-            console.log(sizeInFocus);
-
-            // Loop through the children of a div with id "size_container"
+            //Loop through all the shoe sizes and set there opacity to 0.5 if not selected
             $("#size_container").children().each(function(index, element) {
-                if(element.textContent===sizeInFocus){
-                    $(element).css("opacity",1);
-                    return;
-                }
-                $(element).css("opacity",0.5);
-
+                $(element).css("opacity", element.textContent===sizeInFocus ? 1:0.5);
             });
         }
         function displayAmountToAddModule(product, sizes){
-            console.log(sizes);
-            sizeInFocus=0;
+            resetAmountModule();
+            //reset variables to control value
+            sizeInFocus=-1;
+            availableAmount=-1
+            totalAvailable=0;
+            //empty the previous shoe sizes and display the module
             $("#size_container").empty();
             $(".amount_module").css("display","flex")
-            $("#amount_input").attr("max", product.available_amount)
+
+            console.log(product.available_amount)
             //populate the size_container with the possible sizes
             sizes.forEach(function (item, index){
                 let newDiv = $("<div>");
                 newDiv.addClass("shoe_size");
                 newDiv.text(item.size);
+                //add on click listener to display the available amount of each shoe size when in focus
                 newDiv.click(function (){
                     $("#available_display").text("Available: " + item.available);
+                    availableAmount=item.available;
                     handleShoeSizeClick(newDiv.text());
                 });
-                sizeInFocus+= item.available;
+                totalAvailable+= item.available;
                 newDiv.appendTo($("#size_container"));
             })
+            $("#amount_input").attr("max", product.available_amount)
 
-            $("#available_display").text("Available: " + sizeInFocus);
+            $("#available_display").text("Available: " + totalAvailable);
 
             $("#add_to_cart").off("click").on("click",function (e){
                 e.preventDefault();
                 let amount = $("#amount_input").val()
-                console.log(amount);
-                if(amount>0 && amount<=sizeInFocus && amount!==null) {
-                    addToCart(product, amount);
+                console.log(sizeInFocus);
+                if(sizeInFocus<0){
+                    alert("please select a size");
+                    return;
                 }
+                if(amount>0 && amount<=availableAmount && amount!==null) {
+                    addToCart(product, amount);
+                    return;
+                }
+                //todo add frontend mechanism to let the user know his request was not sent
+                alert("please select an amount that we have available")
             })
         }
         function addToCart(product, amount){
@@ -109,9 +123,19 @@
                     "size":sizeInFocus
                 },
                 success:function(response){
+                    console.log(response);
                     if(response.success===true){
                         displaySuccessfullyAddedMessage(product, amount);
                     }
+                    if(response.failed===true){
+                        alert("You sent a number way to large")
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Log the error message
+                    console.error("Error:", textStatus, errorThrown);
+                    // Log the response text (if available)
+                    console.error("Response Text:", jqXHR.responseText);
                 }
             })
         }
@@ -126,7 +150,6 @@
         }
 
         function resetAmountModule(){
-            sizeInFocus=-1;
             $(".amount_form").css("display","flex")
             $(".success_message").css("display","none")
         }
