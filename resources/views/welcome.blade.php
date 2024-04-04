@@ -47,7 +47,12 @@
                 <span id="model_slot"></span>, in size:
                 <span id="size_slot"></span>
                 To Your Cart</p>
-            <button onclick="resetAmountModule()" id="reset_button" class="add_to_cart">Order Another</button>
+            <div class="button_container">
+                <button onclick="resetAmountModule()" id="reset_button" class="add_to_cart">Order Another</button>
+                <button onclick="window.location='{{route("cart.view")}}'" id="cart_redirect" class="add_to_cart">Go To Checkout</button>
+            </div>
+
+
         </div>
     </div>
     <script>
@@ -115,6 +120,12 @@
                     if(response.success===true){
                         displaySuccessfullyAddedMessage(product, amount);
                     }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Log the error message
+                    console.error("Error:", textStatus, errorThrown);
+                    // Log the response text (if available)
+                    console.error("Response Text:", jqXHR.responseText);
                 }
             })
         }

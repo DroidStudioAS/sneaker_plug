@@ -16,7 +16,7 @@ class HomeController extends Controller
     }
     public function index()
     {
-        //Session::forget("products");
+        Session::forget("products");
         $featuredProducts = $this->productRepo->getLatestProducts(6);
         //return value
         return view("welcome", compact("featuredProducts"));

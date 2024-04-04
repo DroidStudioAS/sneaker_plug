@@ -19,6 +19,8 @@ class CartController extends Controller
         $totalPriceOfCart=0;
         foreach (Session::get("products") as $id=>$amountAndSize){
             $product = $this->productRepo->getSingleProduct($id);
+           // dd($amountAndSize);
+                                                        //amount        //size
             ProductHelper::addAmountAndSizeToProduct($product, $amountAndSize);
             $products->push($product);
 
@@ -29,7 +31,7 @@ class CartController extends Controller
     public function addToCart(ProductModel $product, Request $request){
         $cart = Session::get("products");
 
-        $cart[$product->id] = $request->amount ." ". $request->size;
+        $cart[$product->id] = [$request->amount, $request->size];
 
         Session::put("products", $cart);
 

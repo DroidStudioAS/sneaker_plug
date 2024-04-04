@@ -32,10 +32,9 @@ class ProductHelper
     );
 
 
-    public static function addAmountAndSizeToProduct(ProductModel $product, $amount){
-
-        $splitAmountArray = explode(" ", $amount);
-        $product->amount = $splitAmountArray[0];
-        $product->size = $splitAmountArray[1];
+    public static function addAmountAndSizeToProduct(ProductModel $product, $amountAndSize){
+        //0-size 1-amount
+        $product->amount = $amountAndSize[0];
+        $product->size = $amountAndSize[1];
     }
 }
