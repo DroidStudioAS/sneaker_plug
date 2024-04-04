@@ -2,8 +2,29 @@
 @section("title") HomePage @endsection
 
 @section("content")
+    <div class="search_container">
+        <div onclick="toggleSearch()" id="searchToggle" class="search_display">
+            Show<br>Filters
+        </div>
+        <form action="{{route("shop.search")}}" method="GET" class="search_form">
+            <label for="category_id">Category</label>
+            <select name="category_id" id="category_id" class="input_text">
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
+            <label class="Name">Name</label>
+            <input type="text" name="Name" id="name_input" class="input_text">
+            <label for="amount">Amount</label>
+            <input type="number" name="amount" id="" class="input_text">
+            <label for="price">Price</label>
+            <input type="number" name="price" id="" class="input_text">
+            <label for="size">Size</label>
+            <input type="number" name="size" id="" class="input_text">
+            <input type="submit" class="input_submit">
+        </form>
+    </div>
     <div class="product_container">
-
     @foreach($products as $product)
         <div class="product_card">
             <div class="product_content">
@@ -51,6 +72,7 @@
         </div>
     </div>
     <script>
+        let searchClickCount = 0;
         let sizeInFocus = -1;
         let availableAmount = -1;
         let totalAvailable = 0;
@@ -152,6 +174,24 @@
         function resetAmountModule(){
             $(".amount_form").css("display","flex")
             $(".success_message").css("display","none")
+        }
+        let searchForm = $(".search_form");
+        function toggleSearch() {
+            console.log("hey");
+            let right = '-40vw'; // Initially, hide the search container by moving it to the left
+            let top= "250px";
+            if (searchClickCount % 2 === 0) {
+                right = '-20px'; // If it's even click, show the search container by moving it back to the original position
+                top="50px";
+            }
+           searchForm.animate({
+                right: right // Animate the right CSS property
+            }, 500);
+
+            $("#searchToggle").animate({
+                top:top
+            },500)
+            searchClickCount++;
         }
     </script>
     </script>

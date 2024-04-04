@@ -38,6 +38,7 @@ Route::controller(ContactController::class)
 Route::controller(ShopController::class)
     ->group(function (){
         Route::get("/shop","index")->name("shop");
+        Route::get("/shop/search", "search")->name("shop.search");
         Route::get("/product/{product}","permalink")->name("product.permalink");
     });
 //about

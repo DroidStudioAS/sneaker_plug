@@ -18,13 +18,17 @@ class ShopController extends Controller
     }
     public function index(){
         $products = ProductModel::all();
-        return view("shop", compact("products"));
+        $categories = CategoryModel::all();
+        return view("shop", compact("products", "categories"));
     }
     public function permalink($product){
         $singleProduct = $this->productRepo->getSingleProduct($product);
         $totalAvailable = $this->sizeRepo->getSizesForProduct($product);
 
         return view("product", compact("singleProduct", "totalAvailable"));
+    }
+    public function search(){
+        dd("123");
     }
 
 }

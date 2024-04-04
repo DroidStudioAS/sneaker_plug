@@ -261,7 +261,7 @@ html, body {
     justify-content: center;
     align-items: center;
 
-    position: absolute;
+    position: fixed;
     top: 130px;
     right: 1vw;
 
@@ -612,7 +612,7 @@ html, body {
 .third_product_row img{
     height: 40px;
 }
-.add_to_cart{
+.add_to_cart, .search_display{
     padding: 20px;
     background-color: #1a202c;
     border: 2px solid #0195dc;
@@ -625,4 +625,36 @@ html, body {
     text-align: start;
 }
 /**************************************Product Permalink End************************************************/
+/*******************Search Styling Start*******************/
+.search_container{
+    position: absolute;
+    right: 1vw;
+    top: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+.search_display{
+    text-align: center;
+    z-index: 3;
+    position: fixed;
+    top: 250px;
+    right: 1vw;
+}
+.search_form{
+    position: absolute;
+    top: 0px;
+    width: 30vw;
+    right: -40vw;
+    height:100vh;
+    background-color: #edf2f7;
+    margin: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+/*******************Search Styling End*******************/
 
