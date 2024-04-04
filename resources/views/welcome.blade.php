@@ -57,28 +57,26 @@
     </div>
     <script>
         let sizeInFocus = -1;
+        let availableAmount = -1;
 
         function hideAmountToAddModule(){
             $(".amount_module").css("display","none")
         }
 
         function handleShoeSizeClick(value){
+            //set size in focus to clicked value
             sizeInFocus=value;
-            console.log(sizeInFocus);
-
-            // Loop through the children of a div with id "size_container"
+            //Loop through all the shoe sizes and set there opacity to 0.5 if not selected
             $("#size_container").children().each(function(index, element) {
-               if(element.textContent===sizeInFocus){
-                   $(element).css("opacity",1);
-                   return;
-               }
-                   $(element).css("opacity",0.5);
-
+              $(element).css("opacity", element.textContent===sizeInFocus ? 1:0.5);
             });
         }
         function displayAmountToAddModule(product, sizes){
-            console.log(sizes);
-            sizeInFocus=0;
+            resetAmountModule();
+            //reset variables to control value
+            sizeInFocus=-1;
+            availableAmount=-1
+            //empty the previous shoe sizes and display the module
             $("#size_container").empty();
             $(".amount_module").css("display","flex")
             $("#amount_input").attr("max", product.available_amount)
@@ -87,8 +85,10 @@
                 let newDiv = $("<div>");
                 newDiv.addClass("shoe_size");
                 newDiv.text(item.size);
+                //add on click listener to display the available amount of each shoe size when in focus
                 newDiv.click(function (){
                     $("#available_display").text("Available: " + item.available);
+                    availableAmount=item.available;
                     handleShoeSizeClick(newDiv.text());
                 });
                 sizeInFocus+= item.available;
@@ -100,10 +100,11 @@
             $("#add_to_cart").off("click").on("click",function (e){
                 e.preventDefault();
                 let amount = $("#amount_input").val()
-                console.log(amount);
-                if(amount>0 && amount<=sizeInFocus && amount!==null) {
+                if(amount>0 && amount<=availableAmount && amount!==null) {
                     addToCart(product, amount);
+                    return;
                 }
+                //todo add frontend mechanism to let the user know his request was not sent
             })
         }
         function addToCart(product, amount){
