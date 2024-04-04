@@ -20,11 +20,11 @@ class CartController extends Controller
         if (Session::get("products")===null){
             return view("checkout", compact("products","totalPriceOfCart"));
         }
-        foreach (Session::get("products") as $id=>$amountAndSize){
-            $product = $this->productRepo->getSingleProduct($id);
+        foreach (Session::get("products") as $orderArray){
+            $product = $this->productRepo->getSingleProduct($orderArray["product_id"]);
            // dd($amountAndSize);
-                                                        //amount        //size
-            ProductHelper::addAmountAndSizeToProduct($product, $amountAndSize);
+            //amount        //size
+            ProductHelper::addAmountAndSizeToProduct($product, $orderArray);
             $products->push($product);
 
             $totalPriceOfCart+= $product->amount * $product->price;
@@ -32,11 +32,18 @@ class CartController extends Controller
         return view("checkout", compact("products","totalPriceOfCart"));
     }
     public function addToCart(ProductModel $product, Request $request){
-        $cart = Session::get("products");
+        $cartItem = [
+            "product_id"=>$product->id,
+            "amount"=>$request->amount,
+            "size"=>$request->size
+        ];
+        Session::push("products", $cartItem);
 
-        $cart[$product->id] = [$request->amount, $request->size];
+        //remove duplicate entries
+        $products = Session::get("products");
+        $products = array_unique($products, SORT_REGULAR);
+        Session::put("products", $products);
 
-        Session::put("products", $cart);
 
 
         return response([
