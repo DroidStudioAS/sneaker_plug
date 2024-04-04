@@ -22,8 +22,6 @@ class CartController extends Controller
         }
         foreach (Session::get("products") as $orderArray){
             $product = $this->productRepo->getSingleProduct($orderArray["product_id"]);
-           // dd($amountAndSize);
-            //amount        //size
             ProductHelper::addAmountAndSizeToProduct($product, $orderArray);
             $products->push($product);
             $totalPriceOfCart+= $product->amount * $product->price;
