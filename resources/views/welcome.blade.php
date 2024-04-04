@@ -30,17 +30,26 @@
         </div>
     @endforeach
     </div>
-
-    <form class="amount_module">
+    <div class="amount_module">
         <img onclick="hideAmountToAddModule()" class="close_button" src="{{asset("/res/close.png")}}"/>
-        <p>Available Sizes:</p>
-        <div id="size_container" class="size_container">
+        <form class="amount_form">
+            <p>Available Sizes:</p>
+            <div id="size_container" class="size_container">
+            </div>
+            <p>Select Amount To Order</p>
+            <p id="available_display"></p>
+            <input class="input_text" type="number" name="amount" id="amount_input" min="1">
+            <input id="add_to_cart" type="submit" value="Add To Cart" class="add_to_cart">
+        </form>
+        <div class="success_message">
+            <p>Successfully Added
+                <span id="amount_slot"></span>
+                <span id="model_slot"></span>, in size:
+                <span id="size_slot"></span>
+                To Your Cart</p>
+            <button onclick="resetAmountModule()" id="reset_button" class="add_to_cart">Order Another</button>
         </div>
-        <p>Select Amount To Order</p>
-        <p id="available_display"></p>
-        <input class="input_text" type="number" name="amount" id="amount_input" min="1">
-        <input type="submit" value="Add To Cart" class="add_to_cart">
-    </form>
+    </div>
     <script>
         let sizeInFocus = -1;
 
@@ -83,7 +92,7 @@
 
             $("#available_display").text("Available: " + sizeInFocus);
 
-            $(".add_to_cart").off("click").on("click",function (e){
+            $("#add_to_cart").off("click").on("click",function (e){
                 e.preventDefault();
                 let amount = $("#amount_input").val()
                 console.log(amount);
@@ -103,9 +112,26 @@
                     "size":sizeInFocus
                 },
                 success:function(response){
-                    console.log(response);
+                    if(response.success===true){
+                        displaySuccessfullyAddedMessage(product, amount);
+                    }
                 }
             })
+        }
+        function displaySuccessfullyAddedMessage(product, amount){
+            $(".amount_form").css("display","none")
+            $(".success_message").css("display","flex")
+
+            $("#size_slot").text(sizeInFocus);
+            $("#model_slot").text(product.category.name + " " + product.Name);
+            $("#amount_slot").text(amount);
+
+        }
+
+        function resetAmountModule(){
+            sizeInFocus=-1;
+            $(".amount_form").css("display","flex")
+            $(".success_message").css("display","none")
         }
     </script>
 @endsection

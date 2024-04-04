@@ -15,7 +15,7 @@
             @endif
         <div class="item-total">
             <p class="item_info">Your Total Is</p>
-            <p class="item_info">{{$sum}}$</p>
+            <p class="item_info">{{$totalPriceOfCart}}$</p>
         </div>
         </div>
         <div class="payment_container">

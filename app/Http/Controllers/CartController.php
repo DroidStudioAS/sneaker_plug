@@ -16,15 +16,15 @@ class CartController extends Controller
     }
     public function index(){
         $products= collect([]);
-        $sum=0;
+        $totalPriceOfCart=0;
         foreach (Session::get("products") as $id=>$amountAndSize){
             $product = $this->productRepo->getSingleProduct($id);
             ProductHelper::addAmountAndSizeToProduct($product, $amountAndSize);
-            $products->push($product);  
+            $products->push($product);
 
-            $sum+= $product->amount * $product->price;
+            $totalPriceOfCart+= $product->amount * $product->price;
         }
-        return view("checkout", compact("products","sum"));
+        return view("checkout", compact("products","totalPriceOfCart"));
     }
     public function addToCart(ProductModel $product, Request $request){
         $cart = Session::get("products");
