@@ -27,8 +27,13 @@ class ShopController extends Controller
 
         return view("product", compact("singleProduct", "totalAvailable"));
     }
-    public function search(){
-        dd("123");
+    public function search(Request $request){
+        $products= ProductModel::where("Name", "LIKE", "%$request->Name%")
+            ->where(["category_id"=>$request->category_id])
+            ->where("price", "<=" ,$request->price)
+            ->get();
+        dd($products);
+
     }
 
 }

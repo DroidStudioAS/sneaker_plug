@@ -18,7 +18,8 @@
             <label for="amount">Amount</label>
             <input type="number" name="amount" id="" class="input_text">
             <label for="price">Price</label>
-            <input type="number" name="price" id="" class="input_text">
+            <input type="range" name="price" id="slider" class="input_text" min="0" max="1000">
+            <span id="quantityDisplay">500$</span>
             <label for="size">Size</label>
             <input type="number" name="size" id="" class="input_text">
             <input type="submit" class="input_submit">
@@ -193,6 +194,10 @@
             },500)
             searchClickCount++;
         }
+        $("#slider").on("input", function() {
+            // Update the text content of the display span with the current value
+            $("#quantityDisplay").text($("#slider").val() + "$");
+        });
     </script>
     </script>
 @endsection
