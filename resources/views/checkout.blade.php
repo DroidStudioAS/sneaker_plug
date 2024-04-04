@@ -9,6 +9,7 @@
                 <div class="item">
                     <p class="item_info">{{$product->category->name}}  {{$product->Name}}</p>
                     <p class="item_info">{{$product->amount}}</p>
+                    <p class="item_info">Size: {{$product->size}}</p>
                     <p class="item_info">{{$product->price*$product->amount}}$</p>
                 </div>
             @endforeach
