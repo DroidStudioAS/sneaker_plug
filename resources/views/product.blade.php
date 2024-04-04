@@ -32,7 +32,7 @@
                 <img  src="{{asset("/res/icon_left.svg")}}" alt="">
                 <img  src="{{asset("/res/icon_right.svg")}}" alt="">
             </div>
-            <div onclick="displayAmountToAddModule({{json_encode($singleProduct)}})" class="add_to_cart">
+            <div id="add_to_cart" onclick="displayAmountToAddModule({{json_encode($singleProduct)}})" class="add_to_cart">
                 Add To Cart
             </div>
         </div>
@@ -43,7 +43,7 @@
             <p>Select Amount To Order</p>
             <p id="available_display_module"></p>
             <input class="input_text" type="number" name="amount" id="amount_input" min="1">
-            <input id="add_to_cart" type="submit" value="Add To Cart" class="add_to_cart">
+            <input id="submit_amount" type="submit" value="Add To Cart" class="add_to_cart">
         </form>
         <div class="success_message">
             <p>Successfully Added
@@ -82,11 +82,12 @@
                 alert("Please Select A Size")
                 return;
             }
+            resetAmountModule();
             $(".amount_module").css("display","flex")
             $("#amount_input").attr("max", sizeObject.available)
             $("#available_display_module").text("Available in size " + sizeInFocus+": " + sizeObject.available);
 
-            $(".add_to_cart").off("click").on("click",function (e){
+            $("#submit_amount").off("click").on("click",function (e){
                 e.preventDefault();
                 let amount = $("#amount_input").val()
                 console.log(amount);
@@ -130,6 +131,10 @@
             $("#model_slot").text(product.category.name + " " + product.Name);
             $("#amount_slot").text(amount);
 
+        }
+        function resetAmountModule(){
+            $(".amount_form").css("display","flex")
+            $(".success_message").css("display","none")
         }
     </script>
 @endsection
