@@ -26,12 +26,31 @@ class CartController extends Controller
             //amount        //size
             ProductHelper::addAmountAndSizeToProduct($product, $orderArray);
             $products->push($product);
-
             $totalPriceOfCart+= $product->amount * $product->price;
         }
         return view("checkout", compact("products","totalPriceOfCart"));
     }
+
+    /****
+     * @param ProductModel $product
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function addToCart(ProductModel $product, Request $request){
+        /* On the frontend we make sure the request does not have a larger amount then available
+        * but just in case we will add validation
+        */
+
+
+        foreach ($product->availableSizes as $size){
+            if ($size->size==$request->size){
+                //check if amount is larger
+                if($size->available<$request->amount)
+                return response([
+                    "failed"=>true
+                ]);
+            }
+        }
         $cartItem = [
             "product_id"=>$product->id,
             "amount"=>$request->amount,
