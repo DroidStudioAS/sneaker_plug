@@ -40,33 +40,37 @@ class CartController extends Controller
         /* On the frontend we make sure the request does not have a larger amount then available
         * but just in case we will add validation
         */
-
-
         foreach ($product->availableSizes as $size){
-            if ($size->size==$request->size){
-                //check if amount is larger
-                if($size->available<$request->amount)
-                return response([
-                    "failed"=>true
-                ]);
+            if ($size->size == $request->size){
+                // Check if amount is larger
+                if($size->available < $request->amount) {
+                    return response(["failed" => true]);
+                }
             }
         }
+
+        // Prepare the cart item
         $cartItem = [
-            "product_id"=>$product->id,
-            "amount"=>$request->amount,
-            "size"=>$request->size
+            "product_id" => $product->id,
+            "amount" => $request->amount,
+            "size" => $request->size
         ];
+        // Add the cart item to the session
         Session::push("products", $cartItem);
 
-        //remove duplicate entries
+        //Remove duplicate entries based on product_id and size
         $products = Session::get("products");
-        $products = array_unique($products, SORT_REGULAR);
-        Session::put("products", $products);
+        $uniqueProducts = [];
+        //reverse the array so that the most updated entry is rendered in cart
+        foreach (array_reverse($products) as $product) {
+            $key = $product['product_id'] . '-' . $product['size'];
+            if (!array_key_exists($key, $uniqueProducts)) {
+                $uniqueProducts[$key] = $product;
+            }
+        }
 
+        Session::put("products", array_values($uniqueProducts));
 
-
-        return response([
-            "success"=>true
-        ]);
+        return response(["success" => true]);
     }
 }
