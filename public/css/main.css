@@ -643,7 +643,7 @@ html, body {
     right: 1vw;
 }
 .search_form{
-    position: absolute;
+    position: fixed;
     top: 0px;
     width: 30vw;
     right: -40vw;

@@ -28,42 +28,36 @@ class ShopController extends Controller
         return view("product", compact("singleProduct", "totalAvailable"));
     }
     public function search(Request $request){
-        $sizeSent = false;
-        $amountSent = false;
+        //return arrays
         $categories = CategoryModel::all();
         $products= ProductModel::where("Name", "LIKE", "%$request->Name%")
             ->where(["category_id"=>$request->category_id])
             ->where("price", "<=" ,$request->price)
             ->get();
-
-        if($request->size!==null){
-            $sizeSent=true;
-            if($request->amount!==null){
-                $amountSent=true;
-            }
-        }
+        //if any params related to size model are sent, run this loop.
+        //else logic ends here and view is returned with the products and categories array
         $filteredProducts = collect([]);
-
-        foreach ($products as $product){
-            foreach ($product->availableSizes as $size){
-                if($sizeSent && $amountSent){
-                    if($size->size==$request->size && $size->available>=$request->amount){
-                        $filteredProducts->push($product);
-                    }
-                }
-                else if(!$sizeSent && $amountSent){
-                    if($size->available>=$request->amount){
-                        $filteredProducts->push($product);
-                    }
-                }
-                else if($sizeSent && !$amountSent){
-                    if($size->size==$request->size){
-                        $filteredProducts->push($product);
-                    }
-                }
-            }
-        }
-        if($sizeSent || $amountSent){
+        if($request->filled("size") || $request->filled("amount")){
+             foreach ($products as $product){
+                 foreach ($product->availableSizes as $size){
+                     if($request->filled("size") && $request->filled("amount")){
+                         if($size->size==$request->size && $size->available>=$request->amount){
+                             $filteredProducts->push($product);
+                         }
+                     }
+                     else if(!$request->filled("size") && $request->filled("amount")){
+                         if($size->available>=$request->amount){
+                             $filteredProducts->push($product);
+                         }
+                     }
+                     else if($request->filled("size") && !$request->filled("amount")){
+                         if($size->size==$request->size){
+                             $filteredProducts->push($product);
+                         }
+                     }
+                 }
+             }
+             //set products to filtered products for a single return block
             $products = $filteredProducts;
         }
         return view("shop", compact("products","categories"));

@@ -14,7 +14,7 @@
                 @endforeach
             </select>
             <label class="Name">Name</label>
-            <input type="text" name="Name" id="name_input" class="input_text">
+            <input type="text" name="Name" id="name_input" class="input_text" value="{{old("Name")}}">
             <label for="amount">Amount</label>
             <input type="number" name="amount" id="" class="input_text">
             <label for="price">Price</label>
