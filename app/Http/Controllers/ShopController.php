@@ -29,6 +29,7 @@ class ShopController extends Controller
     }
     public function search(Request $request){
         //return arrays
+        $searchParams = $request->all();
         $categories = CategoryModel::all();
         $products= $this->productRepo->searchProducts($request->Name, $request->category_id, $request->price);
         //if any params related to size model are sent, run this loop.
@@ -57,7 +58,7 @@ class ShopController extends Controller
              //set products to filtered products for a single return block
             $products = $filteredProducts;
         }
-        return view("shop", compact("products","categories"));
+        return view("shop", compact("products","categories","searchParams"));
 
     }
 

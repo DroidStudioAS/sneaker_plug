@@ -10,18 +10,40 @@
             <label for="category_id">Category</label>
             <select name="category_id" id="category_id" class="input_text">
                 @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    <option @if(isset($searchParams) && $searchParams["category_id"]==$category->id) selected @endif value="{{$category->id}}">
+                        {{$category->name}}
+                    </option>
                 @endforeach
             </select>
             <label class="Name">Name</label>
-            <input type="text" name="Name" id="name_input" class="input_text" value="{{old("Name")}}">
+            <input type="text" name="Name" id="name_input" class="input_text"
+               @if(isset($searchParams))
+                    value="{{$searchParams["Name"]}}"
+                @endif>
             <label for="amount">Amount</label>
-            <input type="number" name="amount" id="" class="input_text">
+            <input
+                type="number"
+                name="amount"
+                id=""
+                class="input_text"
+                @if(isset($searchParams))
+                    value="{{$searchParams["amount"]}}"
+                @endif>
             <label for="price">Price</label>
-            <input type="range" name="price" id="slider" class="input_text" min="0" max="1000">
-            <span id="quantityDisplay">500$</span>
+            <input type="range" name="price" id="slider" class="input_text" min="0" max="1000"
+                   @if(isset($searchParams))
+                       value="{{$searchParams['price']}}"
+                     @endif>
+            <span id="quantityDisplay">@if(isset($searchParams) && $searchParams["price"]!==null)
+                    {{$searchParams["price"]}}$
+                @else 500$
+                @endif
+            </span>
             <label for="size">Size</label>
-            <input type="number" name="size" id="" class="input_text">
+            <input type="number" name="size" id="" class="input_text"
+                   @if(isset($searchParams))
+                       value="{{$searchParams["size"]}}"
+                   @endif>
             <input type="submit" class="input_submit">
         </form>
     </div>

@@ -60,7 +60,7 @@ html, body {
     width: 300px;
     min-height: 100vh;
     background-color:#9d9ca1 ;
-    z-index: 1;
+    z-index: 2;
 
 }
 .nav_item{
@@ -637,7 +637,7 @@ html, body {
 }
 .search_display{
     text-align: center;
-    z-index: 3;
+    z-index: 1;
     position: fixed;
     top: 250px;
     right: 1vw;
