@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
@@ -27,7 +28,7 @@ class ShopController extends Controller
 
         return view("product", compact("singleProduct", "totalAvailable"));
     }
-    public function search(Request $request){
+    public function search(SearchRequest $request){
         //return arrays
         $searchParams = $request->all();
         $categories = CategoryModel::all();
