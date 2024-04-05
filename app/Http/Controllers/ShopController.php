@@ -30,6 +30,7 @@ class ShopController extends Controller
     public function search(Request $request){
         $sizeSent = false;
         $amountSent = false;
+        $categories = CategoryModel::all();
         $products= ProductModel::where("Name", "LIKE", "%$request->Name%")
             ->where(["category_id"=>$request->category_id])
             ->where("price", "<=" ,$request->price)
@@ -43,26 +44,29 @@ class ShopController extends Controller
         }
         $filteredProducts = collect([]);
 
-            foreach ($products as $product){
-                foreach ($product->availableSizes as $size){
-                    if($sizeSent && $amountSent){
-                        if($size->size==$request->size && $size->available>=$request->amount){
-                            $filteredProducts->push($product);
-                        }
+        foreach ($products as $product){
+            foreach ($product->availableSizes as $size){
+                if($sizeSent && $amountSent){
+                    if($size->size==$request->size && $size->available>=$request->amount){
+                        $filteredProducts->push($product);
                     }
-                    else if(!$sizeSent && $amountSent){
-                        if($size->available>=$request->amount){
-                            $filteredProducts->push($product);
-                        }
+                }
+                else if(!$sizeSent && $amountSent){
+                    if($size->available>=$request->amount){
+                        $filteredProducts->push($product);
                     }
-                    else if($sizeSent && !$amountSent){
-                        if($size->size==$request->size){
-                            $filteredProducts->push($product);
-                        }
+                }
+                else if($sizeSent && !$amountSent){
+                    if($size->size==$request->size){
+                        $filteredProducts->push($product);
                     }
                 }
             }
-        dd($filteredProducts);
+        }
+        if($sizeSent || $amountSent){
+            $products = $filteredProducts;
+        }
+        return view("shop", compact("products","categories"));
 
     }
 
