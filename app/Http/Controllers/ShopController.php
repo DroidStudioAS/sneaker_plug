@@ -30,10 +30,7 @@ class ShopController extends Controller
     public function search(Request $request){
         //return arrays
         $categories = CategoryModel::all();
-        $products= ProductModel::where("Name", "LIKE", "%$request->Name%")
-            ->where(["category_id"=>$request->category_id])
-            ->where("price", "<=" ,$request->price)
-            ->get();
+        $products= $this->productRepo->searchProducts($request->Name, $request->category_id, $request->price);
         //if any params related to size model are sent, run this loop.
         //else logic ends here and view is returned with the products and categories array
         $filteredProducts = collect([]);

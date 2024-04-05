@@ -19,10 +19,7 @@ class ProductRepository{
    public function editProduct($product, $request){
        $product->update($request->except("_token"));
    }
-   public function getAllProducts(){
-        $this->productModel=ProductModel::all();
-        return $this->productModel;
-   }
+
    public function deleteProduct($product){
        $product->delete();
    }
@@ -34,6 +31,14 @@ class ProductRepository{
         $this->productModel = ProductModel::where(["id"=>$productId])->first();
         return $this->productModel;
    }
+
+    public function searchProducts($name,$categoryId,$price){
+        $this->productModel = ProductModel::where("Name", "LIKE", "%$name%")
+            ->where(["category_id"=>$categoryId])
+            ->where("price", "<=" ,$price)
+            ->get();
+        return $this->productModel;
+    }
 
 
 
