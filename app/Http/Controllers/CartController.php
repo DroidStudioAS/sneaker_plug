@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ProductHelper;
+use App\Http\Requests\CartRequest;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class CartController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function addToCart(ProductModel $product, Request $request){
+    public function addToCart(ProductModel $product, CartRequest $request){
         /* On the frontend we make sure the request does not have a larger amount then available
         * but just in case we will add validation
         */
