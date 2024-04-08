@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,14 @@ Route::controller(CartController::class)
         Route::get("", "index")->name("cart.view");
         Route::post("/add/{product}", "addToCart");
     });
+//orders
+Route::controller(OrderController::class)
+    ->name("order")
+    ->prefix("/order")
+    ->group(function (){
+        Route::post("/send", "sendOrder")->name(".send");
+    });
+
 
 /***********User Routes End**********/
 
