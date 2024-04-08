@@ -32,6 +32,7 @@ class OrderController extends Controller
             "contact_email"=>$request->contact_email,
             "contact_number"=>$request->contact_number,
             "payment_method"=>$request->payment_method,
+            "status"=>"pending",
             "total_price"=>$totalPrice
         ]);
 
@@ -46,6 +47,6 @@ class OrderController extends Controller
             ]);
         }
 
-        dd("order written");
+       return view("order", compact("newOrder"))->with("message","Your Order Was Successful.");
     }
 }
