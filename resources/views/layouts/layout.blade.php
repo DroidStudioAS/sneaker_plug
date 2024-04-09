@@ -8,6 +8,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield("title", "default")</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 @include("reusable.navigation")
 <div class="content_container">

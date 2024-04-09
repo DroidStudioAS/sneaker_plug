@@ -656,3 +656,30 @@ html, body {
 }
 /*******************Search Styling End*******************/
 
+/*******************Order Styling Start*******************/
+.order_container{
+    background-color: #edf2f7;
+    width: 70vw;
+    height: 50vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+
+    margin: 30px;
+}
+.order_container h1{
+    font-size: xxx-large;
+    font-family: "Dancing Script", cursive;
+}
+.order_container p,.order_info_container p, .order_info{
+    font-family: "Urbanist", sans-serif;
+}
+.order_info{
+    font-weight: 700;
+}
+/*******************Order Styling End*******************/
+
+
