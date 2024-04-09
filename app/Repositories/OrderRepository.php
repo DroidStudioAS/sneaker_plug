@@ -2,20 +2,23 @@
 
 namespace App\Repositories;
 
+use App\Models\OrderItemsModel;
 use App\Models\OrderModel;
 use Illuminate\Support\Facades\Auth;
 
 class OrderRepository{
 
     private $orderModel;
+    private $orderItemModel;
 
     public function __construct()
     {
         $this->orderModel=new OrderModel();
+        $this->orderItemModel=new OrderItemsModel();
     }
     public function createOrder($request, $totalPrice)
     {
-        $order = OrderModel::create([
+        $this->orderModel = OrderModel::create([
             "user_id"=> Auth::check() ? Auth::id() : null,
             "contact_email"=>$request->contact_email,
             "contact_number"=>$request->contact_number,
@@ -23,7 +26,17 @@ class OrderRepository{
             "status"=>"pending",
             "total_price"=>$totalPrice
         ]);
-        return $order;
+        return $this->orderModel;
+    }
+
+    public function createOrderItems($newOrder, $product, $dbProduct){
+        $this->orderItemModel =  OrderItemsModel::create([
+            "order_id"=>$newOrder->id,
+            "product_id"=>$product["product_id"],
+            "size"=>$product["size"],
+            "amount"=>$product["amount"],
+            "price"=>$dbProduct->price
+        ]);
     }
 
 }

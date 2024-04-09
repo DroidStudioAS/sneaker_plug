@@ -38,13 +38,7 @@ class OrderController extends Controller
         foreach ($cart as $product){
             $dbProduct = $this->productRepo->getSingleProduct($product["product_id"]);
             $products->push($dbProduct);
-            OrderItemsModel::create([
-                "order_id"=>$newOrder->id,
-                "product_id"=>$product["product_id"],
-                "size"=>$product["size"],
-                "amount"=>$product["amount"],
-                "price"=>$dbProduct->price
-            ]);
+            $this->orderRepo->createOrderItems($newOrder,$product,$dbProduct);
         }
        return view("order", compact("newOrder","products"))->with("message","Your Order Was Successful.");
     }
