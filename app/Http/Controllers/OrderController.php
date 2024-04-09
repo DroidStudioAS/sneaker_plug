@@ -22,6 +22,7 @@ class OrderController extends Controller
     public function sendOrder(Request $request)
     {
         $cart = Session::get("products");
+        $products = collect([]);
         $totalPrice = 0;
 
         foreach ($cart as $product){
@@ -38,6 +39,7 @@ class OrderController extends Controller
 
         foreach ($cart as $product){
             $dbProduct = $this->productRepo->getSingleProduct($product["product_id"]);
+            $products->push($dbProduct);
             OrderItemsModel::create([
                 "order_id"=>$newOrder->id,
                 "product_id"=>$product["product_id"],
@@ -46,7 +48,6 @@ class OrderController extends Controller
                 "price"=>$dbProduct->price
             ]);
         }
-
-       return view("order", compact("newOrder"))->with("message","Your Order Was Successful.");
+       return view("order", compact("newOrder","products"))->with("message","Your Order Was Successful.");
     }
 }

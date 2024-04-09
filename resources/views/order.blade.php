@@ -9,9 +9,17 @@
             In The Future, Create An Account To Follow Your Orders Directly From Our Website
         @endif
         <div class="order_info_container">
-            <p>Your Order Id: <span class="order_info">{{$newOrder->id}}</span> </p>
-            <p>Total Price: <span class="order_info">{{$newOrder->total_price}}</span> </p>
-            <p>Status: <span class="order_info">{{$newOrder->status}}</span> </p>
+            <div class="order_details">
+                <p>Your Order Id: <span class="order_info">{{$newOrder->id}}</span> </p>
+                <p>Total Price: <span class="order_info">{{$newOrder->total_price}}</span> </p>
+                <p>Status: <span class="order_info">{{$newOrder->status}}</span> </p>
+            </div>
+            <div class="order_items">
+                <p class="order_info">You Ordered:</p>
+                @foreach($products as $product)
+                    <p>{{$product->category->name}} {{$product->Name}}</p>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

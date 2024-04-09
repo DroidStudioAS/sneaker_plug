@@ -674,6 +674,21 @@ html, body {
     font-size: xxx-large;
     font-family: "Dancing Script", cursive;
 }
+.order_info_container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+.order_details{
+    display: flex;
+    flex-flow: column nowrap;
+    margin-right: 30px;
+}
+.order_items{
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: 30px;
+}
 .order_container p,.order_info_container p, .order_info{
     font-family: "Urbanist", sans-serif;
 }

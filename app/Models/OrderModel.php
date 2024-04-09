@@ -10,4 +10,8 @@ class OrderModel extends Model
     protected $table="orders";
 
     protected $fillable=["contact_email","contact_number","status","payment_method","total_price"];
+
+    public function items(){
+        return $this->hasMany(OrderItemsModel::class,"order_id", "id")->pluck("product_id");
+    }
 }
