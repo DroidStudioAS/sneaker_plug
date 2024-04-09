@@ -21,7 +21,6 @@ html, body {
     background-color: #9d9ca1;
     position: relative;
     padding: 20px;
-
 }
 .header_container h1{
     font-size: xx-large;
@@ -72,7 +71,7 @@ html, body {
     font-family: Roboto, sans-serif;
     font-size: x-large;
     background-color:#0195dc;
-    padding: 20px;
+    padding: 15px 20px 15px 20px;
     width: 200px;
     text-align: center;
     border-radius: 25px;
