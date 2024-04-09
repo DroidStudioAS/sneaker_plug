@@ -17,6 +17,11 @@
                     {{ __('Logout') }}
                 </a>
             </div>
+            <div class="nav_item">
+                <a  href="{{ route('order.user') }}">
+                    My Orders
+                </a>
+            </div>
         @else
             <div class="nav_item">
                 <a href="/login">Login/Register</a>

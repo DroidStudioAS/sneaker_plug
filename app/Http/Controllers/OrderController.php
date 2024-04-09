@@ -52,4 +52,7 @@ class OrderController extends Controller
         }
        return view("order", compact("newOrder","products"))->with("message","Your Order Was Successful.");
     }
+    public function userOrders(){
+        return view("user_orders");
+    }
 }

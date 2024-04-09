@@ -55,10 +55,11 @@ Route::controller(CartController::class)
     });
 //orders
 Route::controller(OrderController::class)
-    ->name("order")
+    ->name("order.")
     ->prefix("/order")
     ->group(function (){
-        Route::post("/send", "sendOrder")->name(".send");
+        Route::get("/user","userOrders")->name("user");
+        Route::post("/send", "sendOrder")->name("send");
     });
 
 
