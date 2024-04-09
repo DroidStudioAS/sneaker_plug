@@ -7,6 +7,7 @@ use App\Models\OrderModel;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -30,6 +31,7 @@ class OrderController extends Controller
             $totalPrice+=$dbProduct->price;
         }
         $newOrder = OrderModel::create([
+            "user_id"=> Auth::check() ? Auth::id() : null,
             "contact_email"=>$request->contact_email,
             "contact_number"=>$request->contact_number,
             "payment_method"=>$request->payment_method,
