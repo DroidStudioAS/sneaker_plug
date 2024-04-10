@@ -694,6 +694,43 @@ html, body {
 .order_info{
     font-weight: 700;
 }
+
+/*****User Orders****/
+.user_order_container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.user_order{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 20vw;
+    background-color: #edf2f7;
+    margin: 20px;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: "Urbanist", sans-serif;
+}
+.user_order h2{
+    font-family: "Days One", sans-serif;
+}
+
+.user_items_container{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.order_price_container{
+    text-align: center;
+}
+.address_details{
+    text-align: center;
+}
 /*******************Order Styling End*******************/
 
 
