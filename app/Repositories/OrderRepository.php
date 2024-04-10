@@ -38,5 +38,13 @@ class OrderRepository{
             "price"=>$dbProduct->price
         ]);
     }
+    public function getUserOrders(){
+        $orders = collect([]);
+         if(Auth::check()){
+           $orders=OrderModel::where(["user_id"=>Auth::id()])->get();
+           $this->orderModel=$orders;
+         }
+         return $orders;
+    }
 
 }
