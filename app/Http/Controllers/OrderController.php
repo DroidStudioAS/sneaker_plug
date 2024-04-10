@@ -45,6 +45,6 @@ class OrderController extends Controller
     public function userOrders(){
         $orders = $this->orderRepo->getUserOrders();
 
-        return view("user_orders", compact($orders));
+        return view("user_orders", compact("orders"));
     }
 }
