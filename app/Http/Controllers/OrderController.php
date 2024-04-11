@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\OrderItemsModel;
 use App\Models\OrderModel;
 use App\Models\ProductModel;
@@ -23,7 +24,7 @@ class OrderController extends Controller
     {
         return view("order");
     }
-    public function sendOrder(Request $request)
+    public function sendOrder(OrderRequest $request)
     {
 
         $cart = Session::get("products");

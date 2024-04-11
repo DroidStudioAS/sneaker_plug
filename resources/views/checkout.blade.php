@@ -20,6 +20,13 @@
         </div>
         </div>
         <form METHOD="POST" ACTION="{{route("order.send", ["products"=>$products])}}" class="payment_container">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             {{csrf_field()}}
             <p>Select A Payment Method</p>
             <div id="icon_container" class="icon_container">
