@@ -24,7 +24,7 @@ html, body {
 }
 .header_container h1{
     font-size: xx-large;
-    font-family: "Yu Gothic UI Semibold", serif;
+    font-family: "Days One", sans-serif;
     color: #262626;
 }
 .nav_button{
@@ -68,7 +68,7 @@ html, body {
     align-items: center;
 
     margin: 10px;
-    font-family: Roboto, sans-serif;
+    font-family: "Urbanist", sans-serif;
     font-size: x-large;
     background-color:#0195dc;
     padding: 15px 20px 15px 20px;
@@ -96,7 +96,7 @@ html, body {
     align-items: center;
 }
 .footer_content_container p {
-    font-family: "Yu Gothic UI Semibold", serif;
+    font-family: "Urbanist", sans-serif;
     color: #262626;
 }
 .tdmark{
@@ -132,6 +132,8 @@ html, body {
     height: 60vh;
 
     margin: 20px;
+    font-family: "Urbanist", sans-serif;
+
 }
 .product_content{
     width: 20vw;
