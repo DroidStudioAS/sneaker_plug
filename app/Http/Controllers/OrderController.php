@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ProductHelper;
 use App\Http\Requests\OrderRequest;
 use App\Models\OrderItemsModel;
 use App\Models\OrderModel;
@@ -33,6 +34,9 @@ class OrderController extends Controller
 
         foreach ($cart as $product){
             $dbProduct = $this->productRepo->getSingleProduct($product["product_id"]);
+            $size = ProductHelper::findSize($dbProduct,floatval($product["size"]));
+            $size->available = $size->available-1;
+            $size->save();
             $totalPrice+=$dbProduct->price;
         }
         $newOrder = $this->orderRepo->createOrder($request,$totalPrice);

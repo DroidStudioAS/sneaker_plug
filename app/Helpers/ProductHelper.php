@@ -37,4 +37,13 @@ class ProductHelper
         $product->amount = $amountAndSize["amount"];
         $product->size = $amountAndSize["size"];
     }
+    public static function findSize($product, $sizeToFind){
+        $sizes = collect([]);
+        foreach ($product->availableSizes as $size){
+            if($size->size===floatval($sizeToFind)){
+               return $size;
+            }
+        }
+        return false;
+    }
 }
