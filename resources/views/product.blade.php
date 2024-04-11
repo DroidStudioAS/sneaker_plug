@@ -6,7 +6,7 @@
             <p>{{$singleProduct->price}}$</p>
         </div>
         <div class="second_product_row">
-            <img class="product_image" src="{{asset("/res/mock.jpg")}}" alt="">
+            <img class="product_image" src="{{asset("/res/main.jpg")}}" alt="">
             <div class="product_information_permalink">
                 <p>{{$singleProduct->Name}}</p>
                 <p class="permalink_description">{{$singleProduct->description}}</p>

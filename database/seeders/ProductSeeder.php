@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
                 "Name"=>$model["name"],
                 "price"=>$model["price"],
                 "description"=>$model["description"],
-                "image_name"=>"mock.jpg"
+                "image_name"=>"main.jpg"
             ]);
             for($i=0; $i<3; $i++){
                 AvailableSizes::create([
