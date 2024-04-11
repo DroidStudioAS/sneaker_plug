@@ -2,7 +2,8 @@
 @section("admin_content")
     <div class="form_container">
         <form action="{{route("product.edit",["product"=>$product])}}" method="post"
-            style="display: flex; flex-flow: column nowrap; align-items: center">
+              enctype="multipart/form-data"
+              style="display: flex; flex-flow: column nowrap; align-items: center">
             <h2>Edit Product: Enter The Values You Want To Change</h2>
             {{csrf_field()}}
             <select id="new_brand" name="category_id" class="input_text">
@@ -15,7 +16,7 @@
             </select>
             <input value="{{$product->Name}}" placeholder="Product Name" name="Name" id="new_name" type="text" class="input_text">
             <input value="{{$product->price}}" placeholder="Product Price" name="price" id="new_price" type="number" class="input_text">
-            <input placeholder="Product Image" name="image_name" id="new_image" type="file" class="input_text">
+            <input name="image_name" id="new_image" type="file" class="input_text">
             <label for="description">Product Description</label>
             <textarea name="description" id="new_desc"  class="input_message">
                 {{$product->description}}

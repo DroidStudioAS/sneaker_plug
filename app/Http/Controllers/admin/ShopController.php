@@ -10,6 +10,8 @@ use App\Models\ProductModel;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ShopController extends Controller
 {
@@ -66,7 +68,32 @@ class ShopController extends Controller
         ]);
         return redirect()->back();
     }
-    public function editProduct($product,Request $request){
-        dd($request->all());
+    public function editProduct(ProductModel $product, Request $request){
+        $request->validate([
+            "image_name"=>'required|mimes:png'
+        ]);
+        $file = $request->file('image_name');
+
+        // Check if a file was uploaded
+        if ($file) {
+            // Define the directory where you want to store the file relative to the public folder
+            // Define the directory where you want to store the file relative to the public folder
+            $directory = public_path('res/product/') . $product->category_id ."/". Str::slug($product->Name);
+
+            // Specify the filename (you may want to generate a unique filename)
+            $filename = 'main.png';
+
+            // Check if the file already exists
+            $existingFilePath = $directory . '/' . $filename;
+            if (File::exists($existingFilePath)) {
+                // Delete the existing file
+                File::delete($existingFilePath);
+            }
+
+            // Move the uploaded file to the specified directory with the specified filename
+            $file->move($directory, $filename);
+            // Now the file is stored in the public/res directory with the filename main.png
+        }
+
     }
 }
