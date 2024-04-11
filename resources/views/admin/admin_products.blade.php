@@ -35,7 +35,7 @@
             <div class="admin_product_card">
                 <div class="admin_product_row_prim">
                     <div class="admin_image_container">
-                        <img src="{{asset("/res/main.jpg")}}" alt="">
+                        <img src="{{\App\Helpers\ProductHelper::buildImagePath($product)}}" alt="">
                     </div>
                     <div class="product_description">
                         <p>{{$product->description}}</p>
