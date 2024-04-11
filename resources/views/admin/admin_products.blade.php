@@ -66,16 +66,24 @@
                 @endforeach
             </select>
             <input id="edit_name" type="text" class="input_text">
-            <input id="edit_available" type="number" class="input_text">
             <input id="edit_price" type="number" class="input_text">
-            <input placeholder="Product Image" name="image_name" id="edit_image" type="text" class="input_text">
             <textarea id="edit_desc"  class="input_message">
         </textarea>
-            <input id="edit_submit" type="submit" class="input_submit">
+            <div class="button_container">
+                <button id="pushToAdvancedEdit" class="input_submit">Show All</button>
+                <input id="edit_submit" type="submit" class="input_submit">
+            </div>
+
         </form>
     </div>
     <script>
         let addProductClickCount = 0;
+
+        function pushToAdvancedEdit(product){
+            if (product!==null){
+                window.location="/admin/shop/edit/more/"+product.id
+            }
+        }
 
         function displayEditForm(product){
             console.log(product);
@@ -86,6 +94,11 @@
             $("#edit_price").val(product.price);
             $("#edit_image").val(product.image_name);
             $("#edit_desc").val(product.description);
+
+            $("#pushToAdvancedEdit").off("click").on("click", function (e){
+                e.preventDefault();
+                pushToAdvancedEdit(product);
+            })
 
             $("#edit_submit").off("click").on("click",function (e){
                 e.preventDefault();

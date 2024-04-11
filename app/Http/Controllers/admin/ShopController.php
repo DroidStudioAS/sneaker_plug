@@ -48,4 +48,8 @@ class ShopController extends Controller
 
         return redirect()->back()->with("message","$request->Name Created successfully");
     }
+    public function pushToEditProduct(ProductModel $product)
+    {
+        return view("admin.edit_product", compact("product"));
+    }
 }

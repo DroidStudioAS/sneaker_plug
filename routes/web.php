@@ -84,6 +84,7 @@ Route::middleware(["auth", AdminMiddleware::class])
             ->name("product.")
             ->group(function(){
             Route::get("", "index")->name("admin");
+            Route::get("/edit/more/{product}", "pushToEditProduct")->name("edit.more");
             Route::post("/add","addProduct")->name("add");
             Route::post("/edit/{product}","editProduct")->name("edit");
             Route::post("/delete/{product}","deleteProduct")->name("delete");
