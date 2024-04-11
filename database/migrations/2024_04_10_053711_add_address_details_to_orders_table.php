@@ -15,8 +15,8 @@ class AddAddressDetailsToOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->string("delivery_address")->after("total_price")->default("Draze Mihajlovica 12");
-            $table->string("delivery_city_country")->after("delivery_address")->default("Draze Mihajlovica 12");
-            $table->string("postal_code")->after("delivery_city_country")->default("Draze Mihajlovica 12");
+            $table->string("delivery_city_country")->after("delivery_address")->default("Belgrade, Serbia");
+            $table->string("postal_code")->after("delivery_city_country")->default("11000");
         });
     }
 

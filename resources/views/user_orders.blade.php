@@ -17,9 +17,9 @@
                     </div>
            <div class="address_details">
                <p>Delivery Address:</p>
-               <p>Kneza Milosa 22</p>
-               <p>Belgrade, Serbia</p>
-               <p>11000</p>
+               <p>{{$order->delivery_address}}</p>
+               <p>{{$order->delivery_city_country}}</p>
+               <p>{{$order->postal_code}}</p>
            </div>
 
        </div>
