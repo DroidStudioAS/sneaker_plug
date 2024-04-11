@@ -35,7 +35,7 @@ class OrderController extends Controller
         foreach ($cart as $product){
             $dbProduct = $this->productRepo->getSingleProduct($product["product_id"]);
             $size = ProductHelper::findSize($dbProduct,floatval($product["size"]));
-            $size->available = $size->available-1;
+            $size->available = $size->available-$product["amount"];
             $size->save();
             $totalPrice+=$dbProduct->price;
         }
