@@ -532,6 +532,24 @@ html, body {
     justify-content: center;
     align-items: center;
 }
+.form_container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.size_forms{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.amount_container{
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
 /**************************************Admin Styles End************************************************/
 
 /**************************************Product Permalink Start************************************************/

@@ -50,6 +50,7 @@ class ShopController extends Controller
     }
     public function pushToEditProduct(ProductModel $product)
     {
-        return view("admin.edit_product", compact("product"));
+        $categories = CategoryModel::all();
+        return view("admin.edit_product", compact("product","categories"));
     }
 }
