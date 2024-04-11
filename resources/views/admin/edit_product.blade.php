@@ -1,24 +1,31 @@
 @extends("layouts.admin_layout")
 @section("admin_content")
     <div class="form_container">
-        <form style="display: flex; flex-flow: column nowrap; align-items: center">
+        <form action="{{route("product.edit",["product"=>$product])}}" method="post"
+            style="display: flex; flex-flow: column nowrap; align-items: center">
             <h2>Edit Product: Enter The Values You Want To Change</h2>
             {{csrf_field()}}
             <select id="new_brand" name="category_id" class="input_text">
                 @foreach($categories as $category)
-                    <option  value="{{$category->id}}">{{$category->name}}</option>
+                    <option @if($category->id===$product->category_id)
+                                selected
+                            @endif
+                            value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
-            <input placeholder="Product Name" name="Name" id="new_name" type="text" class="input_text">
-            <input placeholder="Product Price" name="price" id="new_price" type="number" class="input_text">
+            <input value="{{$product->Name}}" placeholder="Product Name" name="Name" id="new_name" type="text" class="input_text">
+            <input value="{{$product->price}}" placeholder="Product Price" name="price" id="new_price" type="number" class="input_text">
             <input placeholder="Product Image" name="image_name" id="new_image" type="file" class="input_text">
             <label for="description">Product Description</label>
             <textarea name="description" id="new_desc"  class="input_message">
+                {{$product->description}}
             </textarea>
             <input id="new_submit" type="submit" class="input_submit">
         </form>
         <div class="size_forms">
-            <form style="display: flex; flex-flow: column nowrap; align-items: center">
+            <form id="editSizeForm"
+                style="display: flex; flex-flow: column nowrap; align-items: center">
+                {{csrf_field()}}
                 <h2>Edit Product Sizes And Stock</h2>
                 <h4>Which Sizes Availability Do You Want To Edit</h4>
                 <div class="size_container">
@@ -32,9 +39,14 @@
                     <input type="submit" value="submit" class="input_submit">
                 </div>
             </form>
-            <form style="display: flex; flex-flow: column nowrap; align-items: center">
+
+            <form action="{{route("product.add.size")}}" method="post"
+                style="display: flex; flex-flow: column nowrap; align-items: center">
+                {{csrf_field()}}
                 <h2>Add A Size</h2>
+                <label for="size">Size</label>
                 <input type="number" name="size" id="" class="input_text">
+                <label for="available">Available</label>
                 <input type="number" name="available" id="" class="input_text">
                 <input type="submit" class="input_submit" value="submit">
             </form>
@@ -43,7 +55,9 @@
     </div>
 
     <script>
+        let sizeId = -1;
         function displayAmountContainer(size){
+            sizeId=size.id;
             $(".size_container").children().each(function() {
                 console.log($(this).text() + " " + size.size);
                 if ($(this).text() == size.size) {
@@ -55,7 +69,27 @@
             $("#amount_container").css("display","flex");
             $("#amount_input").val(size.available)
         }
-
+        function editSize(){
+            if(sizeId===-1){
+                return;
+            }
+            $.ajax({
+                url:"/admin/shop/edit/size/"+sizeId,
+                type:"post",
+                data:{
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                },
+                success:function (response){
+                    console.log(response)
+                }
+            })
+        }
+        $(document).ready(function() {
+            $("#editSizeForm").on("submit", function (e){
+                e.preventDefault();
+                editSize();
+            })
+        });
     </script>
 
 @endsection

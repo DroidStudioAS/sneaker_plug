@@ -87,6 +87,8 @@ Route::middleware(["auth", AdminMiddleware::class])
             Route::get("/edit/more/{product}", "pushToEditProduct")->name("edit.more");
             Route::post("/add","addProduct")->name("add");
             Route::post("/edit/{product}","editProduct")->name("edit");
+            Route::post("/edit/size/{size}", "editProductSize")->name("edit.size");
+            Route::post("/add/size","addProductSize")->name("add.size");
             Route::post("/delete/{product}","deleteProduct")->name("delete");
         });
 

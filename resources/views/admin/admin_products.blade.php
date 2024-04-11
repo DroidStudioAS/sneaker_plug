@@ -48,7 +48,7 @@
                     <div class="product_info_field">Available: @foreach($product->availableSizes as $size) {{$size->available}}({{$size->size}})@endforeach</div>
                     <div class="product_info_field">Price: {{$product->price}} $</div>
                     <div class="button_container">
-                        <div onclick="displayEditForm({{json_encode($product)}})" class="edit_button">Edit</div>
+                        <div onclick="pushToEdit({{json_encode($product)}})" class="edit_button">Edit</div>
                         <div onclick="deleteProduct({{json_encode($product)}})" class="delete_button">Delete</div>
                     </div>
                 </div>
@@ -56,30 +56,11 @@
         @endforeach
     </div>
 
-    <div class="edit_product_popup">
-        <img class="close_button" src="{{asset("/res/close.png")}}" alt="close_button" onclick="closeEditPopup()">
-        <form class="form">
-            {{csrf_field()}}
-            <select id="edit_brand" name="brand" class="input_text">
-                @foreach($categories as $category)
-                    <option  value="{{$category->id}}">{{$category->name}}</option>
-                @endforeach
-            </select>
-            <input id="edit_name" type="text" class="input_text">
-            <input id="edit_price" type="number" class="input_text">
-            <textarea id="edit_desc"  class="input_message">
-        </textarea>
-            <div class="button_container">
-                <button id="pushToAdvancedEdit" class="input_submit">Show All</button>
-                <input id="edit_submit" type="submit" class="input_submit">
-            </div>
 
-        </form>
-    </div>
     <script>
         let addProductClickCount = 0;
 
-        function pushToAdvancedEdit(product){
+        function pushToEdit(product){
             if (product!==null){
                 window.location="/admin/shop/edit/more/"+product.id
             }

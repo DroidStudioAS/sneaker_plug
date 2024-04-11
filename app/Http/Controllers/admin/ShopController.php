@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\AvailableSizes;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Repositories\CategoryRepository;
@@ -26,14 +27,7 @@ class ShopController extends Controller
 
         return view("admin.admin_products", compact("products","categories"));
     }
-    public function editProduct(ProductModel $product, ProductRequest $request){
-        $this->productRepo->editProduct($product,$request);
 
-        return response([
-            "success"=>true
-        ]);
-
-    }
     //request is sent only for the csrf token;
     public function deleteProduct(ProductModel $product, Request $request){
         $this->productRepo->deleteProduct($product);
@@ -52,5 +46,17 @@ class ShopController extends Controller
     {
         $categories = CategoryModel::all();
         return view("admin.edit_product", compact("product","categories"));
+    }
+
+    public function editProductSize(AvailableSizes $size, Request $request){
+        return response([
+            "success"=>$size
+        ]);
+    }
+    public function addProductSize(Request $request){
+        dd($request->all());
+    }
+    public function editProduct($product,Request $request){
+        dd($request->all());
     }
 }
