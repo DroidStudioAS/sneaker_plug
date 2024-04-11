@@ -49,8 +49,11 @@ class ShopController extends Controller
     }
 
     public function editProductSize(AvailableSizes $size, Request $request){
+        $size->available=$request->available;
+        $size->save();
+
         return response([
-            "success"=>$size
+            "success"=>true
         ]);
     }
     public function addProductSize(Request $request){

@@ -56,8 +56,11 @@
 
     <script>
         let sizeId = -1;
+        let sizeInFocus =-1;
+
         function displayAmountContainer(size){
             sizeId=size.id;
+            sizeInFocus=size.size;
             $(".size_container").children().each(function() {
                 console.log($(this).text() + " " + size.size);
                 if ($(this).text() == size.size) {
@@ -78,9 +81,13 @@
                 type:"post",
                 data:{
                     "_token": $('meta[name="csrf-token"]').attr('content'),
+                    "size":sizeInFocus,
+                    "available":$("#amount_input").val()
                 },
                 success:function (response){
-                    console.log(response)
+                    if(response.success===true){
+                        location.reload();
+                    }
                 }
             })
         }
