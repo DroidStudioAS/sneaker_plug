@@ -40,7 +40,7 @@
                 </div>
             </form>
 
-            <form action="{{route("product.add.size")}}" method="post"
+            <form action="{{route("product.add.size",["product"=>$product])}}" method="post"
                 style="display: flex; flex-flow: column nowrap; align-items: center">
                 {{csrf_field()}}
                 <h2>Add A Size</h2>
@@ -72,6 +72,7 @@
             $("#amount_container").css("display","flex");
             $("#amount_input").val(size.available)
         }
+        //todo: validate availability
         function editSize(){
             if(sizeId===-1){
                 return;

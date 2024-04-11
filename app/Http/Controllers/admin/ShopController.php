@@ -48,6 +48,7 @@ class ShopController extends Controller
         return view("admin.edit_product", compact("product","categories"));
     }
 
+    //todo: validate availability, refactor update to repo
     public function editProductSize(AvailableSizes $size, Request $request){
         $size->available=$request->available;
         $size->save();
@@ -56,8 +57,14 @@ class ShopController extends Controller
             "success"=>true
         ]);
     }
-    public function addProductSize(Request $request){
-        dd($request->all());
+    //todo: validate request and refactor creation to repo
+    public function addProductSize(ProductModel $product, Request $request){
+        AvailableSizes::create([
+           "product_id"=>$product->id,
+            "size"=>$request->size,
+            "available"=>$request->available
+        ]);
+        return redirect()->back();
     }
     public function editProduct($product,Request $request){
         dd($request->all());

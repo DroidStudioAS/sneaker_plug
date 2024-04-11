@@ -9,5 +9,5 @@ class AvailableSizes extends Model
 {
     protected $table="available_sizes";
 
-    protected $fillable = ["product_id","size"];
+    protected $fillable = ["product_id","size","available"];
 }
