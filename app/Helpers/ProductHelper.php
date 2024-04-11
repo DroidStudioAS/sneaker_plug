@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\ProductModel;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ProductHelper
 {
@@ -45,5 +46,8 @@ class ProductHelper
             }
         }
         return false;
+    }
+    public static function buildImagePath($product){
+        return asset("/res/product/$product->category_id") ."/". Str::slug($product->Name) . "/main.png";
     }
 }

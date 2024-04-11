@@ -52,7 +52,7 @@
         <div class="product_card">
             <div class="product_content">
                 <div class="product_image_container">
-                    <img src="{{asset("/res/mock.jpg")}}" alt="product_image">
+                    <img src="{{\App\Helpers\ProductHelper::buildImagePath($product)}}" alt="product_image">
                 </div>
                 <div class="product_data_short">
                     <div class="product_name_desc_container">
