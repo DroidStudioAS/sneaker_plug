@@ -44,7 +44,8 @@
                 <div class="admin_product_row_sec">
                     <div class="product_info_field">Brand: {{$product->category->name}}</div>
                     <div class="product_info_field">Model: {{$product->Name}}</div>
-                    <div class="product_info_field">Available: {{$product->available_amount}}</div>
+                    <div class="product_info_field">Sizes: @foreach($product->availableSizes as $size) {{$size->size}}  @endforeach</div>
+                    <div class="product_info_field">Available: @foreach($product->availableSizes as $size) {{$size->available}}({{$size->size}})@endforeach</div>
                     <div class="product_info_field">Price: {{$product->price}} $</div>
                     <div class="button_container">
                         <div onclick="displayEditForm({{json_encode($product)}})" class="edit_button">Edit</div>
