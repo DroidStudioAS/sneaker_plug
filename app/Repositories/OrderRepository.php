@@ -24,7 +24,10 @@ class OrderRepository{
             "contact_number"=>$request->contact_number,
             "payment_method"=>$request->payment_method,
             "status"=>"pending",
-            "total_price"=>$totalPrice
+            "total_price"=>$totalPrice,
+            "delivery_address"=>$request->delivery_address,
+            "delivery_city_country"=>$request->delivery_city_country,
+            "postal_code"=>$request->postal_code
         ]);
         return $this->orderModel;
     }

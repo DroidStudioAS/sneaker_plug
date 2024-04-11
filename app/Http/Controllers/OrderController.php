@@ -25,6 +25,7 @@ class OrderController extends Controller
     }
     public function sendOrder(Request $request)
     {
+
         $cart = Session::get("products");
         $products = collect([]);
         $totalPrice = 0;

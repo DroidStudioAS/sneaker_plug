@@ -43,7 +43,7 @@
             <label for="order_adress">Delivery Location</label>
             <input placeholder="Address" type="text" name="delivery_address" id="" class="input_text">
             <input placeholder="City, Country" type="text" name="delivery_city_country" class="input_text">
-            <input placeholder="postal code" type="number" name="delivery_postal_code" class="input_text">
+            <input placeholder="postal code" type="number" name="postal_code" class="input_text">
             <button onclick="sendOrder()" class="input_submit">Confirm</button>
         </form>
     </div>
