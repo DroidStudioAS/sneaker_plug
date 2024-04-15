@@ -41,7 +41,8 @@ class ShopController extends Controller
         ]);
     }
     public function pushToAdd(){
-       return view("admin.admin_add_product");
+        $categories = CategoryModel::all();
+       return view("admin.admin_add_product",compact("categories"));
     }
     public function pushToEditProduct(ProductModel $product)
     {
