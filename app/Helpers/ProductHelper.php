@@ -48,6 +48,6 @@ class ProductHelper
         return false;
     }
     public static function buildImagePath($product){
-        return asset("/res/product/$product->category_id") ."/". Str::slug($product->Name) . "/main.png";
+        return "/storage/res/product/$product->category_id" ."/". Str::slug($product->Name) . "/main.png";
     }
 }
