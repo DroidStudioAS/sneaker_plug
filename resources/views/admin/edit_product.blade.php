@@ -1,6 +1,12 @@
 @extends("layouts.admin_layout")
 @section("admin_content")
         <h2>Editing: {{$product->category->name}} {{$product->Name}}</h2>
+        @if(session("message_product"))
+            <p class="success_response">{{session("message_product")}}</p>
+        @endif
+        @if(session("message_size"))
+            <p class="success_response">{{session("message_size")}}</p>
+        @endif
         <div id="toggleContainer" class="toggleContainer">
             <div onclick="displayClickedForm('editProductTrigger')" id="editProductTrigger" class="toggleButton">Edit Product Information</div>
             <div onclick="displayClickedForm('editSizeTrigger')" id="editSizeTrigger" class="toggleButton">Edit Product Sizes</div>
@@ -10,9 +16,6 @@
         <div id="form_container">
             <form id="editProductForm" class="edit_form" action="{{route("product.edit",["product"=>$product])}}" method="post"
                   enctype="multipart/form-data">
-                @if(session("message_product"))
-                    <p class="success_response">{{session("message_product")}}</p>
-                @endif
                 <h2>Edit Product: Enter The Values You Want To Change</h2>
                 {{csrf_field()}}
                 <select id="new_brand" name="category_id" class="input_text">
@@ -117,7 +120,7 @@
                     if(response.success===true){
                         $("#editSizeSr").text(response.message);
                     }
-                }
+                },
             })
         }
         $(document).ready(function() {

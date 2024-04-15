@@ -53,6 +53,9 @@ class ShopController extends Controller
 
     //todo: validate availability, refactor update to repo
     public function editProductSize(AvailableSizes $size, Request $request){
+        $request->validate([
+           "available"=>"required|int|gte:1"
+        ]);
         $size->available=$request->available;
         $size->save();
 
@@ -63,11 +66,15 @@ class ShopController extends Controller
     }
     //todo: validate request and refactor creation to repo
     public function addProductSize(ProductModel $product, Request $request){
-        AvailableSizes::create([
-           "product_id"=>$product->id,
-            "size"=>$request->size,
-            "available"=>$request->available
+        $request->validate([
+           "size"=>"required|numeric|gte:29",
+            "available"=>"required|int|gte:1"
         ]);
+        AvailableSizes::create([
+                   "product_id"=>$product->id,
+                    "size"=>$request->size,
+                    "available"=>$request->available
+                ]);
         return redirect()->back()->with("message_size", "Size Added");
     }
     public function editProduct(ProductModel $product, Request $request){
