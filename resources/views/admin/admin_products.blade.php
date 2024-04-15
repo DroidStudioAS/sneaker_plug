@@ -1,33 +1,10 @@
 @extends("layouts.admin_layout")
 @section("admin_content")
     <div class="add_container">
-        <div onclick="toggleAddProductsForm()" id="add_product" class="input_submit">
+        <div onclick="pushToAdd()" id="add_product" class="input_submit">
             Add Product
         </div>
-        <h1>@if(session("message")) {{session("message")}} @endif</h1>
-        <form action="{{route("product.add")}}" method="post" class="add_form">
-            {{csrf_field()}}
-            <select id="new_brand" name="category_id" class="input_text">
-                @foreach($categories as $category)
-                    <option  value="{{$category->id}}">{{$category->name}}</option>
-                @endforeach
-            </select>
-            <input placeholder="Product Name" name="Name" id="new_name" type="text" class="input_text">
-            <input placeholder="Product Amount Available" name="available_amount" id="new_available" type="number" class="input_text">
-            <input placeholder="Product Price" name="price" id="new_price" type="number" class="input_text">
-            <input placeholder="Product Image" name="image_name" id="new_image" type="text" class="input_text">
-            <label for="description">Product Description</label>
-            <textarea name="description" id="new_desc"  class="input_message">
-            </textarea>
-            <input id="new_submit" type="submit" class="input_submit">
-        </form>
     </div>
-
-
-
-
-
-
 
 
     <div class="table_container">
@@ -65,41 +42,10 @@
                 window.location="/admin/shop/edit/more/"+product.id
             }
         }
-
-        function displayEditForm(product){
-            console.log(product);
-            $(".edit_product_popup").css("display","flex");
-            $("#edit_brand").val(product.category.id);
-            $("#edit_name").val(product.Name);
-            $("#edit_available").val(product.available_amount);
-            $("#edit_price").val(product.price);
-            $("#edit_image").val(product.image_name);
-            $("#edit_desc").val(product.description);
-
-            $("#pushToAdvancedEdit").off("click").on("click", function (e){
-                e.preventDefault();
-                pushToAdvancedEdit(product);
-            })
-
-            $("#edit_submit").off("click").on("click",function (e){
-                e.preventDefault();
-                editProduct(product);
-            })
-
+        function pushToAdd(){
+            window.location="{{route('product.add')}}"
         }
-        function closeEditPopup(){
-            $(".edit_product_popup").css("display","none");
-        }
-        function toggleAddProductsForm(){
-            if(addProductClickCount%2===0){
-                $(".add_form").slideDown();
-                $(".add_form").css("display","flex");
-            }else{
-                $(".add_form").slideUp();
-            }
 
-            addProductClickCount++;
-        }
 
         /*****Async Functions*****/
 

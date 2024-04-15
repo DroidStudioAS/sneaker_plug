@@ -40,11 +40,8 @@ class ShopController extends Controller
             "success"=>true
         ]);
     }
-    public function addProduct(ProductRequest $request){
-
-        $this->productRepo->createNewProduct($request);
-
-        return redirect()->back()->with("message","$request->Name Created successfully");
+    public function pushToAdd(){
+       return view("admin.admin_add_product");
     }
     public function pushToEditProduct(ProductModel $product)
     {
