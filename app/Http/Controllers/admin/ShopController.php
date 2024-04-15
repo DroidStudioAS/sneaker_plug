@@ -71,11 +71,13 @@ class ShopController extends Controller
     }
     public function editProduct(ProductModel $product, Request $request){
         $request->validate([
-            "image_name"=>'required|mimes:png'
+            "category_id"=>"required|int",
+            "Name"=>"required|string",
+            "price"=>"required|numeric",
+            "description"=>"required|string",
+            "image_name"=>'nullable|mimes:png'
         ]);
-
         $file = $request->file('image_name');
-
         // Check if a file was uploaded
         if ($file) {
             // Define the directory where you want to store the file relative to the storage folder
@@ -93,9 +95,8 @@ class ShopController extends Controller
 
             // Store the uploaded file in the specified directory with the specified filename
             Storage::disk('public')->putFileAs($directory, $file, $filename);
-
-            // Now the file is stored in the storage/res/product directory with the filename main.png
         }
+        $product->update($request->except("image_name","_token"));
     }
 
 }
