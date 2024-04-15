@@ -57,7 +57,8 @@ class ShopController extends Controller
         $size->save();
 
         return response([
-            "success"=>true
+            "success"=>true,
+            "message"=>"Size Updated"
         ]);
     }
     //todo: validate request and refactor creation to repo
@@ -67,7 +68,7 @@ class ShopController extends Controller
             "size"=>$request->size,
             "available"=>$request->available
         ]);
-        return redirect()->back();
+        return redirect()->back()->with("message_size", "Size Added");
     }
     public function editProduct(ProductModel $product, Request $request){
         $request->validate([
@@ -97,7 +98,7 @@ class ShopController extends Controller
             Storage::disk('public')->putFileAs($directory, $file, $filename);
         }
         $product->update($request->except("image_name","_token"));
-        return redirect()->back()->with("message", "Product Updated");
+        return redirect()->back()->with("message_product", "Product Updated");
     }
 
 }

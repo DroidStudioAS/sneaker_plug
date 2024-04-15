@@ -4,8 +4,8 @@
         <form action="{{route("product.edit",["product"=>$product])}}" method="post"
               enctype="multipart/form-data"
               style="display: flex; flex-flow: column nowrap; align-items: center">
-            @if(session("message"))
-               <p class="success_response">{{session("message")}}</p>
+            @if(session("message_product"))
+               <p class="success_response">{{session("message_product")}}</p>
             @endif
             <h2>Edit Product: Enter The Values You Want To Change</h2>
             {{csrf_field()}}
@@ -30,6 +30,7 @@
             <form id="editSizeForm"
                 style="display: flex; flex-flow: column nowrap; align-items: center">
                 {{csrf_field()}}
+                <p class="success_response" id="editSizeSr"></p>
                 <h2>Edit Product Sizes And Stock</h2>
                 <h4>Which Sizes Availability Do You Want To Edit</h4>
                 <div class="size_container">
@@ -91,7 +92,7 @@
                 },
                 success:function (response){
                     if(response.success===true){
-                        location.reload();
+                        $("#editSizeSr").text(response.message);
                     }
                 }
             })
