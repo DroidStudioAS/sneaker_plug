@@ -4,6 +4,9 @@
         <form action="{{route("product.edit",["product"=>$product])}}" method="post"
               enctype="multipart/form-data"
               style="display: flex; flex-flow: column nowrap; align-items: center">
+            @if(session("message"))
+               <p class="success_response">{{session("message")}}</p>
+            @endif
             <h2>Edit Product: Enter The Values You Want To Change</h2>
             {{csrf_field()}}
             <select id="new_brand" name="category_id" class="input_text">

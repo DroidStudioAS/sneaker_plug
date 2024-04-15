@@ -9,6 +9,10 @@ html, body {
     margin: 0;
     padding: 0;
 }
+.success_response{
+    font-family: "Urbanist", sans-serif;
+    font-weight: bolder;
+}
 /*******header Styles Start*********/
 .header_container{
     display: flex;

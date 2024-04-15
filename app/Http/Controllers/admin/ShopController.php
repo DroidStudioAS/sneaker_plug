@@ -97,6 +97,7 @@ class ShopController extends Controller
             Storage::disk('public')->putFileAs($directory, $file, $filename);
         }
         $product->update($request->except("image_name","_token"));
+        return redirect()->back()->with("message", "Product Updated");
     }
 
 }
