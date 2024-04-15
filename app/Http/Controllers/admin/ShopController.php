@@ -49,6 +49,10 @@ class ShopController extends Controller
         $categories = CategoryModel::all();
         return view("admin.edit_product", compact("product","categories"));
     }
+    public function addProduct(Request $request){
+        dd($request->all());
+        return redirect()->back();
+    }
 
     public function editProductSize(AvailableSizes $size, Request $request){
         $request->validate([

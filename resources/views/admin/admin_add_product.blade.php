@@ -1,27 +1,28 @@
 @extends("layouts.admin_layout")
 @section("admin_content")
-    <form class="add_form">
-    <div id="basicInfo" class="basic_info">
-        <h1>Enter Basic Product Information</h1>
-        <select class="input_text">
-            @foreach($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-            @endforeach
-        </select>
-        <input type="text" class="input_text" name="Name">
-        <input type="number" name="price" class="input_text">
-        <textarea class="input_message"></textarea>
-        <input type="file" name="image_name" id="" class="input_text">
-        <div onclick="showNextForm()" class="input_submit" id="nextButton">Continue</div>
-    </div>
-
-    <div id="size_info" class="size_form">
-        <h1>Add Available Sizes</h1>
-        <input type="text" class="input_text">
-        <div onclick="showLastForm()" class="input_submit" id="nextButton">Continue</div>
-    </div>
-    <div class="availability_form">
-        <input type="number" name="" id="" class="input_text">
+    <form action="{{route("product.add")}}" method="POST" class="add_form">
+        {{csrf_field()}}
+        <div id="basicInfo" class="basic_info">
+            <h1>Enter Basic Product Information</h1>
+            <select class="input_text">
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
+            <input type="text" class="input_text" name="Name">
+            <input type="number" name="price" class="input_text">
+            <textarea class="input_message"></textarea>
+            <input type="file" name="image_name" id="" class="input_text">
+            <div onclick="showNextForm()" class="input_submit" id="nextButton">Continue</div>
+        </div>
+        <div id="size_info" class="size_form">
+            <h1>Add Available Sizes</h1>
+            <input type="text" class="input_text" name="num">
+            <div onclick="showLastForm()" class="input_submit" id="nextButton">Continue</div>
+        </div>
+        <div class="availability_form">
+        <input type="number" name="availabile" id="" class="input_text">
+        <input type="submit">
     </div>
     </form>
     <style>

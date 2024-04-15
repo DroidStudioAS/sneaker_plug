@@ -43,7 +43,7 @@
             }
         }
         function pushToAdd(){
-            window.location="{{route('product.add')}}"
+            window.location="{{route('product.form.add')}}"
         }
 
 
