@@ -9,6 +9,7 @@ use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\SizeRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -17,11 +18,11 @@ use Illuminate\Support\Str;
 class ShopController extends Controller
 {
     private $productRepo;
-    private $categoryRepo;
+    private $sizeRepo;
 
     public function __construct(){
         $this->productRepo = new ProductRepository();
-        $this->categoryRepo= new CategoryRepository();
+        $this->sizeRepo= new SizeRepository();
     }
 
     public function index(){
@@ -51,7 +52,6 @@ class ShopController extends Controller
         return view("admin.edit_product", compact("product","categories"));
     }
 
-    //todo: validate availability, refactor update to repo
     public function editProductSize(AvailableSizes $size, Request $request){
         $request->validate([
            "available"=>"required|int|gte:1"
@@ -64,17 +64,12 @@ class ShopController extends Controller
             "message"=>"Size Updated"
         ]);
     }
-    //todo: validate request and refactor creation to repo
     public function addProductSize(ProductModel $product, Request $request){
         $request->validate([
            "size"=>"required|numeric|gte:29",
             "available"=>"required|int|gte:1"
         ]);
-        AvailableSizes::create([
-                   "product_id"=>$product->id,
-                    "size"=>$request->size,
-                    "available"=>$request->available
-                ]);
+        $this->sizeRepo->createAvailableSize($product, $request);
         return redirect()->back()->with("message_size", "Size Added");
     }
     public function editProduct(ProductModel $product, Request $request){
@@ -104,7 +99,7 @@ class ShopController extends Controller
             // Store the uploaded file in the specified directory with the specified filename
             Storage::disk('public')->putFileAs($directory, $file, $filename);
         }
-        $product->update($request->except("image_name","_token"));
+        $this->productRepo->editProduct($product,$request);
         return redirect()->back()->with("message_product", "Product Updated");
     }
 

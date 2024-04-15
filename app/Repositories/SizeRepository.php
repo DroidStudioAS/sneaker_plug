@@ -19,5 +19,12 @@ class SizeRepository
         }
         return $sum;
     }
+    public function createAvailableSize($product, $request){
+        $this->sizeModel=AvailableSizes::create([
+            "product_id"=>$product->id,
+            "size"=>$request->size,
+            "available"=>$request->available
+        ]);
+    }
 
 }

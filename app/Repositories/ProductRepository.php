@@ -17,7 +17,7 @@ class ProductRepository{
         $this->productModel->create($request->except("_token"));
    }
    public function editProduct($product, $request){
-       $product->update($request->except("_token"));
+       $product->update($request->except("image_name","_token"));
    }
 
    public function deleteProduct($product){
