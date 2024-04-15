@@ -536,10 +536,27 @@ html, body {
     justify-content: center;
     align-items: center;
 }
-.form_container{
+/*ADMIN EDIT*/
+.toggleContainer{
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
+    flex-flow: row wrap;
+}
+.toggleButton{
+    width: 20vw;
+    text-align: center;
+    padding: 20px 15px 20px 15px;
+    margin: 5px;
+    background-color: #1a202c;
+    color: #edf2f7;
+    border: 2px solid #0195dc;
+    border-radius: 8px;
+    opacity: 0.5;
+}
+
+.edit_form{
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
     align-items: center;
 }
 .size_forms{
